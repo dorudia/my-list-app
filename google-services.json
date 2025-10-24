@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "450027180193",
+    "firebase_url": "https://react-native-expenses-co-44802-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "react-native-expenses-co-44802",
+    "storage_bucket": "react-native-expenses-co-44802.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450027180193:android:8247332bbad9ef704560e0",
+        "android_client_info": {
+          "package_name": "com.ddia.lists_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqK3HWPV1nimlIC03Ir_gO11xv2mGRvj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
