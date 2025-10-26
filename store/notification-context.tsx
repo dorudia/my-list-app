@@ -1763,18 +1763,7 @@
 import { useTodos } from "@/store/todo-context";
 import { useUser } from "@clerk/clerk-expo";
 import * as Notifications from "expo-notifications";
-<<<<<<< Updated upstream
-import {
-  createContext,
-  use,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-=======
 import { createContext, useContext, useEffect, useRef, useState } from "react";
->>>>>>> Stashed changes
 import { Platform } from "react-native";
 
 type NotificationItem = {
