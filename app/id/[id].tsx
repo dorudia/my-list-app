@@ -1,11 +1,12 @@
+import NotificatinoButton from "@/components/NotificatinoButton";
 import { useNotifications } from "@/store/notification-context";
 import { useTodos } from "@/store/todo-context";
 import { Ionicons } from "@expo/vector-icons";
 import DateTimePicker, {
   DateTimePickerAndroid,
 } from "@react-native-community/datetimepicker";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
   Alert,
   Platform,
@@ -18,7 +19,7 @@ import {
 
 const Todo = () => {
   const { todos, updateTodo } = useTodos();
-  const { notifications, scheduleNotification } = useNotifications();
+  const { notifications, createNotification } = useNotifications();
   const { id, listName } = useLocalSearchParams<{
     id: string;
     listName: string;
@@ -31,6 +32,8 @@ const Todo = () => {
   const [inputValue, setInputValue] = useState(todo?.text || "");
   const [isChecked, setIsChecked] = useState(todo?.completed || false);
   const router = useRouter();
+  const { bgColor } = useTodos();
+  const navigation = useNavigation();
   const [date, setDate] = useState<Date | undefined>(
     todo?.reminderDate && new Date(todo.reminderDate).getTime() > Date.now()
       ? new Date(todo.reminderDate)
@@ -38,6 +41,19 @@ const Todo = () => {
   );
 
   const [showIOS, setShowIOS] = useState(false);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitleAlign: "left",
+      headerRight: () => <NotificatinoButton />,
+      headerStyle: {
+        backgroundColor: bgColor,
+      },
+      contentStyle: {
+        backgroundColor: bgColor,
+      },
+    });
+  }, [navigation, bgColor]);
 
   const showPicker = () => {
     if (Platform.OS === "android") {
@@ -87,6 +103,14 @@ const Todo = () => {
       ]);
       return;
     }
+    for (const todo of todos) {
+      if (todo.text === inputValue.trim() && todo.id !== id) {
+        Alert.alert("Error", "Name already exists!", [
+          { text: "ok", onPress: () => setInputValue(todo?.text || "") },
+        ]);
+        return;
+      }
+    }
     console.log("submitHandler: date:", date);
 
     if (date && date < new Date()) {
@@ -110,7 +134,15 @@ const Todo = () => {
         reminder,
         reminderDate: updatedDate,
       });
-      scheduleNotification(id, text, date, listName);
+      createNotification({
+        listName,
+        title: text,
+        todoId: id,
+        body: text,
+        read: false,
+        date: updatedDate,
+        delivered: false,
+      });
     } else {
       updateTodo({ id, listName, text });
     }
@@ -199,9 +231,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     paddingHorizontal: 24,
-    // backgroundColor: "#f7f7f7",
     alignItems: "center",
-    // justifyContent: "center",
     paddingTop: 8,
   },
   title: {
@@ -217,7 +247,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#bbbbbb",
     padding: 10,
-    backgroundColor: "#fff",
+    backgroundColor: "#ffffff80",
     marginBottom: 16,
     borderRadius: 8,
   },

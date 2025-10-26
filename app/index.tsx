@@ -38,13 +38,22 @@ import React, { useEffect } from "react";
 import { ActivityIndicator, View } from "react-native";
 
 // Setare globală, în afara componentei
+// Notifications.setNotificationHandler({
+//   handleNotification: async () => ({
+//     shouldShowAlert: true,
+//     shouldPlaySound: true,
+//     shouldSetBadge: false,
+//     shouldShowBanner: true, // obligatoriu
+//     shouldShowList: true, // obligatoriu
+//   }),
+// });
+
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
-    shouldShowAlert: true,
+    shouldShowBanner: true, // pentru iOS
+    shouldShowList: true, // pentru iOS (notification center)
     shouldPlaySound: true,
     shouldSetBadge: false,
-    shouldShowBanner: true, // obligatoriu
-    shouldShowList: true, // obligatoriu
   }),
 });
 
@@ -57,7 +66,7 @@ export default function Index() {
 
     // ✅ navigatorul trebuie să fie montat, deci punem un mic delay
     const timeout = setTimeout(() => {
-      if (isSignedIn) {
+      if (isSignedIn && isLoaded && user) {
         // Dacă utilizatorul e logat, mergem la ecranul principal
         router.replace("/addList");
       } else {

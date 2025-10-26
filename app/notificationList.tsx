@@ -1,6 +1,8 @@
 import { useNotifications } from "@/store/notification-context";
+import { useTodos } from "@/store/todo-context";
 import { Ionicons } from "@expo/vector-icons";
-import React, { useEffect } from "react";
+import { useNavigation } from "expo-router";
+import React, { use, useEffect, useLayoutEffect, useState } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -10,6 +12,9 @@ import {
 } from "react-native";
 
 const NotificationList = () => {
+  const { bgColor } = useTodos();
+  const [color, setColor] = useState("#fff");
+  const navigation = useNavigation();
   const {
     notifications,
     removeNotification,
@@ -17,6 +22,22 @@ const NotificationList = () => {
     markAllAsRead,
   } = useNotifications();
   const delivered = notifications.filter((n) => n.delivered);
+
+  useEffect(() => {
+    setColor(bgColor);
+    console.log(color);
+  }, [bgColor]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerStyle: {
+        backgroundColor: bgColor,
+      },
+      contentStyle: {
+        backgroundColor: bgColor,
+      },
+    });
+  });
 
   useEffect(() => {
     if (notifications.length === 0) return;
@@ -37,16 +58,17 @@ const NotificationList = () => {
   return (
     <ScrollView scrollEnabled={true} contentContainerStyle={styles.container}>
       <Text style={styles.title}>Ultimele notificări:</Text>
-      {delivered.map((n) => (
+      {notifications.map((n) => (
         <View key={n.id} style={styles.notification}>
+          <Ionicons name="notifications-outline" size={16} color="#1e33d0" />
           <Text
             numberOfLines={1}
             style={[
               styles.notificationText,
-              { color: n.read ? "#747474" : "#1e33d0" },
+              { color: n.read ? "#747474" : "#314797" },
             ]}
           >
-            {n?.body} — {new Date(n?.date).toLocaleTimeString()}
+            {n?.title} — {new Date(n?.date!).toLocaleTimeString()}
           </Text>
           {/* <Button title="X" onPress={() => removeNotification(n.id)} /> */}
           <TouchableOpacity onPress={() => removeNotification(n.id)}>
@@ -102,6 +124,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: "#555",
     marginRight: 10,
+    marginLeft: 4,
   },
   delteAll: {
     backgroundColor: "#dd3535",

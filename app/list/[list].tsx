@@ -3,9 +3,15 @@ import TodoComponent from "@/components/todo";
 import UserContainer from "@/components/UserContainer";
 import { useTodos } from "@/store/todo-context";
 // import { Inter_500Medium, useFonts } from "@expo-google-fonts/inter";
-import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
+import {
+  useFocusEffect,
+  useLocalSearchParams,
+  useNavigation,
+  useRouter,
+} from "expo-router";
 import { useEffect, useLayoutEffect, useState } from "react";
 import {
+  ActivityIndicator,
   Alert,
   Pressable,
   ScrollView,
@@ -21,17 +27,43 @@ export default function Index() {
   const [todo, setTodo] = useState("");
   const router = useRouter();
   const navigation = useNavigation();
-
+  const { bgColor } = useTodos();
+  const [isLoading, setIsLoading] = useState(false);
   const { list } = useLocalSearchParams<{ list: string }>();
+
+  // const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+  const capitalizeWords = (str: string) =>
+    str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: list,
+      title: capitalizeWords(list),
       headerRight: () => <NotificatinoButton />,
+      headerStyle: {
+        backgroundColor: bgColor,
+      },
+      contentStyle: {
+        backgroundColor: bgColor,
+      },
     });
-  }, [navigation]);
+  }, [navigation, bgColor]);
 
   const submitHandler = async () => {
+    if (todo.trim() === "") {
+      Alert.alert("Error", "Name cannot be empty!");
+      return;
+    }
+
+    for (const item of todos) {
+      if (item.text === todo.trim()) {
+        Alert.alert("Error", "Name already exists!");
+        return;
+      }
+    }
+
     console.log("todo:", todo);
     await addTodo(todo, list);
     setTodo("");
@@ -59,6 +91,42 @@ export default function Index() {
   useEffect(() => {
     fetchTodos(list);
   }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const updateRninderFalseForMissedNotifications = async () => {
+      const now = new Date();
+      const missed = todos.filter(
+        (n) => n.reminder && n.reminderDate && new Date(n.reminderDate) < now
+      );
+      console.log("👍 am gasit ", missed.length, " todos trecute");
+
+      for (const n of missed) {
+        try {
+          await updateTodo({
+            id: n.id,
+            listName: n.listName,
+            text: n.text,
+            reminder: false,
+            reminderDate: null,
+          });
+        } catch (error) {
+          console.log("UpdateTodo in list error:", error);
+        }
+      }
+
+      setIsLoading(false);
+    };
+    updateRninderFalseForMissedNotifications();
+  }, [todos]);
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color={"#555"} />
+      </View>
+    );
+  }
 
   return (
     <>
@@ -92,6 +160,7 @@ export default function Index() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 40 }}
           style={{
+            width: "100%",
             marginTop: 10,
             // padding: 10,
             marginBottom: 50,
@@ -130,7 +199,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   input: {
-    // width: "60%",
+    // width: "100%",
     flex: 1,
     height: 40,
     borderWidth: 1,

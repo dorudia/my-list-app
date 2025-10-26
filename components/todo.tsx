@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   },
   notificationsIcon: {
     position: "absolute",
-    left: -1,
+    left: 0,
     top: 0,
   },
 });

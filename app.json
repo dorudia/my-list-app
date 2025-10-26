@@ -53,7 +53,8 @@
           "icon": "./assets/notification-icon.png",
           "color": "#ffffff"
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true,
@@ -65,7 +66,6 @@
         "projectId": "bbf2edec-d220-4e46-8a0e-e850430f6928"
       }
     },
-
     "owner": "ddia"
   }
 }

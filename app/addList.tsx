@@ -6,6 +6,7 @@ import { useNavigation, useRouter } from "expo-router";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
   Alert,
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -21,12 +22,19 @@ const AddList = () => {
   const { getUserLists, addList, userLists, deleteList, updateTodo } =
     useTodos();
   const navigation = useNavigation();
+  const { bgColor } = useTodos();
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => <NotificatinoButton />,
+      headerStyle: {
+        backgroundColor: bgColor,
+      },
+      contentStyle: {
+        backgroundColor: bgColor,
+      },
     });
-  }, [navigation]);
+  }, [navigation, bgColor]);
 
   const onInputChange = (text: string) => {
     setInput(text);
@@ -126,6 +134,8 @@ const styles = StyleSheet.create({
     // backgroundColor: "#ffffff",
     paddingHorizontal: 16,
     // marginTop: -50,
+    // width: Platform.OS === "web" ? "50%" : "100%",
+    // marginHorizontal: Platform.OS === "web" ? "auto" : undefined,
   },
   listsWrapper: {
     width: "100%",
@@ -143,8 +153,8 @@ const styles = StyleSheet.create({
     borderColor: "#aaaaaa",
     padding: 6,
     borderRadius: 12,
-    backgroundColor: "#fff",
-    elevation: 4,
+    backgroundColor: "#ffffff80",
+    // elevation: 4,
   },
   listText: {
     fontSize: 18,
@@ -170,10 +180,12 @@ const styles = StyleSheet.create({
   input: {
     // width: "60%",
     flex: 1,
-    height: 40,
+    // height: 40,
     borderWidth: 1,
     borderColor: "#aaaaaa",
     padding: 8,
+    backgroundColor: "#ffffff90",
+    borderRadius: 4,
   },
   button: {
     // width: "25%",
