@@ -243,7 +243,7 @@
 
 import { useTodos } from "@/store/todo-context";
 import { useUser } from "@clerk/clerk-expo";
-// import * as Notifications from "expo-notifications";
+import * as Notifications from "expo-notifications";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Platform } from "react-native";
 
