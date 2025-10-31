@@ -1,6 +1,7 @@
 import NotificatinoButton from "@/components/NotificatinoButton";
 import { useNotifications } from "@/store/notification-context";
 import { useTodos } from "@/store/todo-context";
+import { useUser } from "@clerk/clerk-expo";
 import { Ionicons } from "@expo/vector-icons";
 import DateTimePicker, {
   DateTimePickerAndroid,

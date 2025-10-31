@@ -15,6 +15,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useUser } from "@clerk/clerk-expo";
 
 const AddList = () => {
   const [input, setInput] = useState<string>("");
@@ -23,6 +24,13 @@ const AddList = () => {
     useTodos();
   const navigation = useNavigation();
   const { bgColor } = useTodos();
+  const { isLoaded, isSignedIn } = useUser();
+
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) {
+      router.replace("/(auth)/sign-in"); // redirect la login
+    }
+  }, [isLoaded, isSignedIn]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -66,6 +74,10 @@ const AddList = () => {
     getList();
   }, []);
 
+  if (!isLoaded || !isSignedIn) {
+    return null; // sau un ActivityIndicator
+  }
+
   return (
     // <SafeAreaView style={{ flex: 1 }}>
     <View style={styles.rootContainer}>
@@ -92,9 +104,9 @@ const AddList = () => {
           autoCapitalize="none"
           // multiline={true}
         />
-        <Pressable style={styles.button} onPress={submitHandler}>
+        <TouchableOpacity style={styles.button} onPress={submitHandler}>
           <Text style={styles.buttonText}>add</Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
       <ScrollView
         style={styles.listsWrapper}

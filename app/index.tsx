@@ -1,52 +1,8 @@
-// import { useUser } from "@clerk/clerk-expo";
-// import { router } from "expo-router";
-// import React, { useEffect } from "react";
-// import { ActivityIndicator, Text, View } from "react-native";
-
-// export default function Index() {
-//   const { isLoaded, isSignedIn, user } = useUser();
-
-//   useEffect(() => {
-//     if (!isLoaded) return;
-
-//     if (isSignedIn) {
-//       router.replace("/addList"); // ✅ dacă user-ul e logat → mergi la addList
-//     } else {
-//       router.replace("/(auth)/sign-in"); // dacă nu e logat → mergi la sign-in
-//     }
-//   }, [isLoaded, isSignedIn]);
-
-//   if (!isLoaded) {
-//     return (
-//       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-//         <ActivityIndicator size="large" />
-//       </View>
-//     );
-//   }
-
-//   return (
-//     <View>
-//       <Text>Bun venit, {user?.firstName || "utilizator"}!</Text>
-//     </View>
-//   );
-// }
-
 import { useUser } from "@clerk/clerk-expo";
 import * as Notifications from "expo-notifications";
 import { router } from "expo-router";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { ActivityIndicator, View } from "react-native";
-
-// Setare globală, în afara componentei
-// Notifications.setNotificationHandler({
-//   handleNotification: async () => ({
-//     shouldShowAlert: true,
-//     shouldPlaySound: true,
-//     shouldSetBadge: false,
-//     shouldShowBanner: true, // obligatoriu
-//     shouldShowList: true, // obligatoriu
-//   }),
-// });
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

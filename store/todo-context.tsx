@@ -1,4 +1,4 @@
-import { useUser } from "@clerk/clerk-expo";
+import { useUser, useAuth } from "@clerk/clerk-expo";
 import { createContext, useContext, useEffect, useState } from "react";
 import { Alert } from "react-native";
 import * as SecureStore from "expo-secure-store";
@@ -47,6 +47,7 @@ export const TodosContext = createContext<TodosContextType>({
 const TodoProvider = ({ children }: { children: React.ReactNode }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [userLists, setUserLists] = useState<string[]>([]);
+  const { getToken } = useAuth();
   const { user, isLoaded } = useUser();
   const [bgColor, setBgColor] = useState("#fff");
 
@@ -64,7 +65,57 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
   const getUserUri = async () => {
     if (!isLoaded || !user) return null;
     const userId = user.id;
+    console.log({ userId });
+
     return `https://react-native-expenses-co-44802-default-rtdb.europe-west1.firebasedatabase.app/liste/liste-${userId}`;
+  };
+
+  const getUserLists = async () => {
+    const uri = await getUserUri();
+    console.log("Fetching from:", uri);
+    if (!uri) return;
+    try {
+      const res = await fetch(`${uri}.json`);
+      const data = await res.json();
+      console.log({ data });
+
+      if (!data) {
+        setUserLists([]);
+        return;
+      }
+      const listsArray = Object.keys(data)
+        .map((listName) => {
+          const firstKey = Object.keys(data[listName])[0];
+          const createdAt = data[listName][firstKey]?.createdAt || 0;
+          return { name: listName, createdAt };
+        })
+        .sort((a, b) => b.createdAt - a.createdAt)
+        .map((l) => l.name);
+      setUserLists(listsArray);
+    } catch (err) {
+      console.log("Error in getUserLists:", err);
+    }
+  };
+
+  const fetchTodos = async (listName: string) => {
+    const uri = await getUserUri();
+    if (!uri) return;
+    try {
+      const res = await fetch(`${uri}/${listName}.json`);
+      const data = await res.json();
+      if (!data) {
+        setTodos([]);
+        return [];
+      }
+      const todosArray: Todo[] = Object.keys(data).map((key) => ({
+        id: key,
+        ...data[key],
+      }));
+      setTodos(todosArray.filter((t) => t.text !== undefined));
+      return todosArray;
+    } catch (err) {
+      console.log("Error fetching todos:", err);
+    }
   };
 
   const addList = async (text: string) => {
@@ -98,30 +149,6 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
       setUserLists((prev) => prev.filter((l) => l !== listName));
     } catch (err) {
       console.log("Error deleting list:", err);
-    }
-  };
-
-  const getUserLists = async () => {
-    const uri = await getUserUri();
-    if (!uri) return;
-    try {
-      const res = await fetch(`${uri}.json`);
-      const data = await res.json();
-      if (!data) {
-        setUserLists([]);
-        return;
-      }
-      const listsArray = Object.keys(data)
-        .map((listName) => {
-          const firstKey = Object.keys(data[listName])[0];
-          const createdAt = data[listName][firstKey]?.createdAt || 0;
-          return { name: listName, createdAt };
-        })
-        .sort((a, b) => b.createdAt - a.createdAt)
-        .map((l) => l.name);
-      setUserLists(listsArray);
-    } catch (err) {
-      console.log("Error in getUserLists:", err);
     }
   };
 
@@ -179,27 +206,6 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const fetchTodos = async (listName: string) => {
-    const uri = await getUserUri();
-    if (!uri) return;
-    try {
-      const res = await fetch(`${uri}/${listName}.json`);
-      const data = await res.json();
-      if (!data) {
-        setTodos([]);
-        return [];
-      }
-      const todosArray: Todo[] = Object.keys(data).map((key) => ({
-        id: key,
-        ...data[key],
-      }));
-      setTodos(todosArray.filter((t) => t.text !== undefined));
-      return todosArray;
-    } catch (err) {
-      console.log("Error fetching todos:", err);
-    }
-  };
-
   const updateTodo = async (
     todo: Partial<Todo> & { id: string; listName: string }
   ) => {
@@ -245,66 +251,6 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
       console.log("❌ Error updating todo:", err);
     }
   };
-
-  // când user-ul e gata, procesăm notificările rămase
-
-  // const updateTodo = async (
-  //   todo: Partial<Todo> & { id: string; listName: string }
-  // ) => {
-  //   const uri = await getUserUri();
-  //   if (!uri) return;
-  //   const { id, listName, ...rest } = todo;
-  //   if (!id || !listName) return;
-  //   try {
-  //     await fetch(`${uri}/${listName}/${id}.json`, {
-  //       method: "PATCH",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(rest),
-  //     });
-  //     fetchTodos(listName);
-  //   } catch (err) {
-  //     console.log("Error updating todo:", err);
-  //   }
-  // };
-
-  // const updateTodo = async (
-  //   todo: Partial<Todo> & { id: string; listName: string }
-  // ) => {
-  //   const uri = await getUserUri();
-  //   if (!uri) {
-  //     console.log("⚠️ User not authenticated for updateTodo.");
-  //     return;
-  //   }
-
-  //   const { id, listName, ...rest } = todo;
-
-  //   if (!id || !listName) {
-  //     console.log("⚠️ Missing id or listName for updateTodo", todo);
-  //     return;
-  //   }
-
-  //   // Dacă nu ai alte câmpuri de actualizat, ieși fără a face PATCH
-  //   if (Object.keys(rest).length === 0) {
-  //     console.log("ℹ️ Nothing to update for todo:", id);
-  //     return;
-  //   }
-
-  //   try {
-  //     const res = await fetch(`${uri}/${listName}/${id}.json`, {
-  //       method: "PATCH",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(rest),
-  //     });
-
-  //     if (!res.ok) {
-  //       console.log("❌ HTTP Error:", res.status);
-  //     } else {
-  //       console.log("✅ Todo updated:", id, rest);
-  //     }
-  //   } catch (err) {
-  //     console.log("❌ Error updating todo:", err);
-  //   }
-  // };
 
   const deleteTodos = async (listName: string) => {
     const uri = await getUserUri();

@@ -1,0 +1,1313 @@
+The field "cli.appVersionSource" is not set, but it will be required in the future. Learn more: https://docs.expo.dev/build-reference/app-versions/
+Resolved "production" environment for the build. Learn more: https://docs.expo.dev/eas/environment-variables/#setting-the-environment-for-your-builds
+Environment variables with visibility "Plain text" and "Sensitive" loaded from the "production" environment on EAS: EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY.
+Environment variables loaded from the "production" build profile "env" configuration: ANDROID_HOME, NODE_ENV.
+
+You set NODE_ENV=production in the build profile or environment variables. Remember that it will be available during the entire build process. In particular, it will make yarn/npm install only production packages.
+
+Specified value for "android.package" in app.json is ignored because an android directory was detected in the project.
+EAS Build will use the value found in the native code.
+The field "cli.appVersionSource" is not set, but it will be required in the future. Learn more: https://docs.expo.dev/build-reference/app-versions/
+✔ Using remote Android credentials (Expo server)
+ANDROID_NDK_HOME environment variable was not specified, continuing build without NDK
+[SETUP_WORKINGDIR] Preparing workingdir /var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a
+[START_BUILD] Starting build
+  "job": {
+    "type": "generic",
+    "platform": "android",
+    "projectRootDirectory": ".",
+    "projectArchive": {
+      "type": "PATH",
+      "path": "/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-cli-nodejs/a4b8209c-2d67-40ba-89b7-3e7e93a32ead.tar.gz"
+    },
+    "builderEnvironment": {
+      "env": {
+        "ANDROID_HOME": "/Users/dorudia/Library/Android/sdk",
+        "NODE_ENV": "production"
+      }
+    },
+    "cache": {
+      "disabled": false,
+      "paths": [],
+      "clear": false
+    },
+    "updates": {},
+    "gradleCommand": ":app:bundleRelease",
+    "username": "ddia",
+    "experimental": {},
+    "mode": "build",
+    "triggeredBy": "EAS_CLI",
+    "appId": "bbf2edec-d220-4e46-8a0e-e850430f6928",
+    "initiatingUserId": "03b582a6-e2aa-4e15-bd4a-dca0e6028dff"
+  }
+[READ_PACKAGE_JSON] Using package.json:
+[READ_PACKAGE_JSON] {
+  "name": "my-list-app",
+  "main": "expo-router/entry",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "expo start -c",
+    "reset-project": "node ./scripts/reset-project.js",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "lint": "expo lint"
+  },
+  "dependencies": {
+    "@clerk/clerk-expo": "^2.17.0",
+    "@expo-google-fonts/inter": "^0.4.2",
+    "@expo/vector-icons": "^15.0.2",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@react-native-community/datetimepicker": "8.4.4",
+    "@react-navigation/bottom-tabs": "^7.4.0",
+    "@react-navigation/elements": "^2.6.3",
+    "@react-navigation/native": "^7.1.8",
+    "@react-navigation/native-stack": "^7.3.16",
+    "expo": "~54.0.13",
+    "expo-auth-session": "~7.0.8",
+    "expo-constants": "~18.0.9",
+    "expo-dev-client": "~6.0.16",
+    "expo-font": "~14.0.9",
+    "expo-image": "~3.0.9",
+    "expo-linear-gradient": "^15.0.7",
+    "expo-linking": "~8.0.8",
+    "expo-notifications": "~0.32.12",
+    "expo-router": "~6.0.11",
+    "expo-secure-store": "~15.0.7",
+    "expo-splash-screen": "~31.0.10",
+    "expo-status-bar": "~3.0.8",
+    "expo-symbols": "~1.0.7",
+    "expo-system-ui": "~6.0.7",
+    "expo-web-browser": "~15.0.8",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native-reanimated": "~4.1.1",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0",
+    "react-native-web": "~0.21.0",
+    "react-native-worklets": "0.5.1"
+  },
+  "devDependencies": {
+    "@react-native-community/cli": "^20.0.2",
+    "@types/react": "~19.1.0",
+    "eslint": "^9.25.0",
+    "eslint-config-expo": "~10.0.0",
+    "typescript": "~5.9.2"
+  },
+  "private": true
+}
+[INSTALL_DEPENDENCIES] Running "npm ci --include=dev" in /var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build directory
+[INSTALL_DEPENDENCIES] added 1219 packages, and audited 1220 packages in 15s
+[INSTALL_DEPENDENCIES] 215 packages are looking for funding
+[INSTALL_DEPENDENCIES]   run `npm fund` for details
+[INSTALL_DEPENDENCIES] found 0 vulnerabilities
+env: load .env.production .env
+env: export PORT FIREBASE_BASE CLERK_PUBLISHABLE_KEY API_BASE_URL
+[READ_APP_CONFIG] Using app configuration:
+[READ_APP_CONFIG] {
+  "name": "My list app",
+  "slug": "crud_app",
+  "icon": "./assets/icon.png",
+  "version": "1.0.0",
+  "orientation": "portrait",
+  "scheme": "myapp",
+  "userInterfaceStyle": "automatic",
+  "newArchEnabled": true,
+  "splash": {
+    "image": "./assets/splash.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#ffffff"
+  },
+  "ios": {
+    "supportsTablet": true,
+    "bundleIdentifier": "com.ddia.lists-app",
+    "infoPlist": {
+      "NSUserTrackingUsageDescription": "Folosim notificări pentru a te anunța despre activitățile din aplicație."
+    }
+  },
+  "android": {
+    "adaptiveIcon": {
+      "backgroundColor": "#E6F4FE"
+    },
+    "edgeToEdgeEnabled": true,
+    "predictiveBackGestureEnabled": false,
+    "package": "com.ddia.lists_app",
+    "googleServicesFile": "./google-services.json"
+  },
+  "web": {
+    "output": "static",
+    "favicon": "./assets/images/favicon.png"
+  },
+  "plugins": [
+    "expo-router",
+    [
+      "expo-splash-screen",
+      {
+        "image": "./assets/images/splash-icon.png",
+        "imageWidth": 200,
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff",
+        "dark": {
+          "backgroundColor": "#000000"
+        }
+      }
+    ],
+    [
+      "expo-notifications",
+      {
+        "icon": "./assets/notification-icon.png",
+        "color": "#ffffff"
+      }
+    ],
+    "expo-secure-store"
+  ],
+  "experiments": {
+    "typedRoutes": true,
+    "reactCompiler": true
+  },
+  "extra": {
+    "router": {},
+    "eas": {
+      "projectId": "bbf2edec-d220-4e46-8a0e-e850430f6928"
+    }
+  },
+  "owner": "ddia",
+  "sdkVersion": "54.0.0",
+  "platforms": [
+    "ios",
+    "android",
+    "web"
+  ],
+  "androidStatusBar": {
+    "backgroundColor": "#ffffff"
+  }
+}
+[RUN_EXPO_DOCTOR] Running "expo doctor"
+[RUN_EXPO_DOCTOR] env: load .env.production .env
+[RUN_EXPO_DOCTOR] env: export PORT FIREBASE_BASE CLERK_PUBLISHABLE_KEY API_BASE_URL
+[RUN_EXPO_DOCTOR] Running 17 checks on your project...
+[RUN_EXPO_DOCTOR] 16/17 checks passed. 1 checks failed. Possible issues detected:
+[RUN_EXPO_DOCTOR] Use the --verbose flag to see more details about passed checks.
+[RUN_EXPO_DOCTOR] 
+[RUN_EXPO_DOCTOR] ✖ Check for app config fields that may not be synced in a non-CNG project
+[RUN_EXPO_DOCTOR] This project contains native project folders but also has native configuration properties in app.json, indicating it is configured to use Prebuild. When the android/ios folders are present, EAS Build will not sync the following properties: icon, orientation, scheme, userInterfaceStyle, splash, ios, android, plugins, androidStatusBar. 
+[RUN_EXPO_DOCTOR] 
+[RUN_EXPO_DOCTOR] Advice:
+[RUN_EXPO_DOCTOR] Add '/android' to your .easignore file if you intend to use CNG / Prebuild. Learn more: https://docs.expo.dev/workflow/prebuild/#usage-with-eas-build
+[RUN_EXPO_DOCTOR] If you intend to not use CNG, add '/android/.gradle' to your .easignore to avoid committing Gradle caches
+[PREBUILD] Skipped running "expo prebuild" because the "android" directory already exists. Learn more about the build process: https://docs.expo.dev/build-reference/android-builds/
+[PREPARE_CREDENTIALS] Writing secrets to the project's directory
+[PREPARE_CREDENTIALS] Injecting signing config into build.gradle
+[EAGER_BUNDLE] env: load .env.production .env
+[EAGER_BUNDLE] env: export PORT FIREBASE_BASE CLERK_PUBLISHABLE_KEY API_BASE_URL
+[EAGER_BUNDLE] React Compiler enabled
+[EAGER_BUNDLE] Starting Metro Bundler
+[EAGER_BUNDLE] Android node_modules/expo-router/entry.js ▓▓░░░░░░░░░░░░░░ 17.4% ( 98/235)
+[EAGER_BUNDLE] Android Bundled 1386ms node_modules/expo-router/entry.js (1278 modules)
+[EAGER_BUNDLE] Writing bundle output to: /var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/9uk6wxfanb8/index.js
+[EAGER_BUNDLE] Copying 45 asset files
+[EAGER_BUNDLE] Done writing bundle output
+[RUN_GRADLEW] Running 'gradlew :app:bundleRelease' in /var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/android
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-settings-plugin:checkKotlinGradlePluginConfigurationErrors
+[RUN_GRADLEW] SKIPPED
+[RUN_GRADLEW] > Task :gradle-plugin:settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :gradle-plugin:shared:checkKotlinGradlePluginConfigurationErrors
+[RUN_GRADLEW] SKIPPED
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-plugin-shared:checkKotlinGradlePluginConfigurationErrors
+[RUN_GRADLEW] SKIPPED
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-settings-plugin:pluginDescriptors
+[RUN_GRADLEW] > Task :gradle-plugin:settings-plugin:pluginDescriptors
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-settings-plugin:processResources
+[RUN_GRADLEW] > Task :gradle-plugin:settings-plugin:processResources
+[RUN_GRADLEW] > Task :gradle-plugin:shared:processResources NO-SOURCE
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-plugin-shared:processResources NO-SOURCE
+[RUN_GRADLEW] > Task :gradle-plugin:shared:compileKotlin
+[RUN_GRADLEW] > Task :gradle-plugin:shared:compileJava NO-SOURCE
+[RUN_GRADLEW] > Task :gradle-plugin:shared:classes UP-TO-DATE
+[RUN_GRADLEW] > Task :gradle-plugin:shared:jar
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-plugin-shared:compileKotlin
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-plugin-shared:compileJava NO-SOURCE
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-plugin-shared:classes UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-plugin-shared:jar
+[RUN_GRADLEW] > Task :gradle-plugin:settings-plugin:compileKotlin
+[RUN_GRADLEW] > Task :gradle-plugin:settings-plugin:compileJava NO-SOURCE
+[RUN_GRADLEW] > Task :gradle-plugin:settings-plugin:classes
+[RUN_GRADLEW] > Task :gradle-plugin:settings-plugin:jar
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-settings-plugin:compileKotlin
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-settings-plugin:compileJava NO-SOURCE
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-settings-plugin:classes
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-settings-plugin:jar
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :gradle-plugin:react-native-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :expo-module-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :expo-dev-launcher-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :expo-module-gradle-plugin:pluginDescriptors
+[RUN_GRADLEW] > Task :expo-dev-launcher-gradle-plugin:pluginDescriptors
+[RUN_GRADLEW] > Task :expo-dev-launcher-gradle-plugin:processResources
+[RUN_GRADLEW] > Task :expo-module-gradle-plugin:processResources
+[RUN_GRADLEW] > Task :gradle-plugin:react-native-gradle-plugin:pluginDescriptors
+[RUN_GRADLEW] > Task :gradle-plugin:react-native-gradle-plugin:processResources
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-plugin:pluginDescriptors
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-plugin:processResources
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-plugin:compileKotlin
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-plugin:compileJava NO-SOURCE
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-plugin:classes
+[RUN_GRADLEW] > Task :expo-gradle-plugin:expo-autolinking-plugin:jar
+[RUN_GRADLEW] > Task :gradle-plugin:react-native-gradle-plugin:compileKotlin
+[RUN_GRADLEW] > Task :gradle-plugin:react-native-gradle-plugin:compileJava NO-SOURCE
+[RUN_GRADLEW] > Task :gradle-plugin:react-native-gradle-plugin:classes
+[RUN_GRADLEW] > Task :gradle-plugin:react-native-gradle-plugin:jar
+[RUN_GRADLEW] > Task :expo-dev-launcher-gradle-plugin:compileKotlin
+[RUN_GRADLEW] > Task :expo-dev-launcher-gradle-plugin:compileJava NO-SOURCE
+[RUN_GRADLEW] > Task :expo-dev-launcher-gradle-plugin:classes
+[RUN_GRADLEW] > Task :expo-dev-launcher-gradle-plugin:jar
+[RUN_GRADLEW] > Task :expo-module-gradle-plugin:compileKotlin
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/expo-module-gradle-plugin/src/main/kotlin/expo/modules/plugin/android/AndroidLibraryExtension.kt:9:24 'var targetSdk: Int?' is deprecated. Will be removed from library DSL in v9.0. Use testOptions.targetSdk or/and lint.targetSdk instead.
+[RUN_GRADLEW] > Task :expo-module-gradle-plugin:compileJava NO-SOURCE
+[RUN_GRADLEW] > Task :expo-module-gradle-plugin:classes
+[RUN_GRADLEW] > Task :expo-module-gradle-plugin:jar
+[RUN_GRADLEW] > Configure project :
+[RUN_GRADLEW] [32m[ExpoRootProject][0m Using the following versions:
+[RUN_GRADLEW] - buildTools:  [32m36.0.0[0m
+[RUN_GRADLEW]   - minSdk:      [32m24[0m
+[RUN_GRADLEW]   - compileSdk:  [32m36[0m
+[RUN_GRADLEW]   - targetSdk:   [32m36[0m
+[RUN_GRADLEW]   - ndk:         [32m27.1.12297006[0m
+[RUN_GRADLEW]   - kotlin:      [32m2.1.20[0m
+[RUN_GRADLEW]   - ksp:         [32m2.1.20-2.0.1[0m
+[RUN_GRADLEW] > Configure project :app
+[RUN_GRADLEW] ℹ️  [33mApplying gradle plugin[0m '[32mexpo-dev-launcher-gradle-plugin[0m'
+[RUN_GRADLEW] > Configure project :expo
+[RUN_GRADLEW] Using expo modules
+[RUN_GRADLEW]   - [32mexpo-constants[0m (18.0.10)
+[RUN_GRADLEW] - [32mexpo-dev-client[0m (6.0.16)
+[RUN_GRADLEW]   - [32mexpo-dev-launcher[0m (6.0.16)
+[RUN_GRADLEW]   - [32mexpo-dev-menu[0m (7.0.15)
+[RUN_GRADLEW]   - [32mexpo-dev-menu-interface[0m (2.0.0)
+[RUN_GRADLEW]   - [32mexpo-json-utils[0m (0.15.0)
+[RUN_GRADLEW] - [32mexpo-manifests[0m (1.0.8)
+[RUN_GRADLEW] - [32mexpo-modules-core[0m (3.0.22)
+[RUN_GRADLEW] - [32mexpo-updates-interface[0m (2.0.0)
+[RUN_GRADLEW] - [33m[📦][0m [32mexpo-application[0m (7.0.7)
+[RUN_GRADLEW] - [33m[📦][0m [32mexpo-asset[0m (12.0.9)
+[RUN_GRADLEW]   - [33m[📦][0m [32mexpo-crypto[0m (15.0.7)
+[RUN_GRADLEW] - [33m[📦][0m [32mexpo-file-system[0m (19.0.17)
+[RUN_GRADLEW]   - [33m[📦][0m [32mexpo-font[0m (14.0.9)
+[RUN_GRADLEW]   - [33m[📦][0m [32mexpo-image[0m (3.0.10)
+[RUN_GRADLEW] - [33m[📦][0m [32mexpo-keep-awake[0m (15.0.7)
+[RUN_GRADLEW]   - [33m[📦][0m [32mexpo-linear-gradient[0m (15.0.7)
+[RUN_GRADLEW] - [33m[📦][0m [32mexpo-linking[0m (8.0.8)
+[RUN_GRADLEW]   - [33m[📦][0m [32mexpo-notifications[0m (0.32.12)
+[RUN_GRADLEW]   - [33m[📦][0m [32mexpo-secure-store[0m (15.0.7)
+[RUN_GRADLEW]   - [33m[📦][0m [32mexpo-splash-screen[0m (31.0.10)
+[RUN_GRADLEW] - [33m[📦][0m [32mexpo-system-ui[0m (6.0.8)
+[RUN_GRADLEW]   - [33m[📦][0m [32mexpo-web-browser[0m (15.0.8)
+[RUN_GRADLEW] > Task :expo-manifests:preBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:preBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-json-utils:preBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:preBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu:preBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:preBuild
+[RUN_GRADLEW] UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:preBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-modules-core:preBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:preReleaseBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:preReleaseBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:generateCodegenSchemaFromJavaScript UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:generateCodegenSchemaFromJavaScript UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:generateCodegenSchemaFromJavaScript UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:generateCodegenSchemaFromJavaScript UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:generateReleaseResValues
+[RUN_GRADLEW] > Task :expo-dev-launcher:generateReleaseResValues
+[RUN_GRADLEW] > Task :react-native-screens:generateCodegenSchemaFromJavaScript
+[RUN_GRADLEW] UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:generateCodegenArtifactsFromSchema UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:preBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu:preReleaseBuild
+[RUN_GRADLEW] UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:generateCodegenArtifactsFromSchema UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:preBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:generateCodegenArtifactsFromSchema UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:generateCodegenArtifactsFromSchema UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:preReleaseBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:preBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:preBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-json-utils:preReleaseBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-manifests:preReleaseBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:generateReleaseResources
+[RUN_GRADLEW] > Task :expo-dev-menu:generateReleaseResValues
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:generateReleaseResValues
+[RUN_GRADLEW] > Task :expo-manifests:generateReleaseResValues
+[RUN_GRADLEW] > Task :expo-json-utils:generateReleaseResValues
+[RUN_GRADLEW] > Task :react-native-screens:generateCodegenArtifactsFromSchema
+[RUN_GRADLEW] UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:generateReleaseResources
+[RUN_GRADLEW] > Task :react-native-screens:preBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-modules-core:preReleaseBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-json-utils:generateReleaseResources
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:generateReleaseResources
+[RUN_GRADLEW] > Task :expo-modules-core:generateReleaseResValues
+[RUN_GRADLEW] > Task :expo-manifests:generateReleaseResources
+[RUN_GRADLEW] > Task :expo-modules-core:generateReleaseResources
+[RUN_GRADLEW] > Task :expo-dev-client:packageReleaseResources
+[RUN_GRADLEW] > Task :expo-updates-interface:preReleaseBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:generateReleaseResValues
+[RUN_GRADLEW] > Task :expo-json-utils:packageReleaseResources
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:preReleaseBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-manifests:packageReleaseResources
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:preReleaseBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:packageReleaseResources
+[RUN_GRADLEW] > Task :react-native-gesture-handler:preReleaseBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:generateReleaseResValues UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:generateReleaseResValues UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:generateReleaseResValues UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:generateReleaseResources
+[RUN_GRADLEW] > Task :expo-dev-menu:generateReleaseResources
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:generateReleaseResources
+[RUN_GRADLEW] UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:generateReleaseResources UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-modules-core:packageReleaseResources
+[RUN_GRADLEW] > Task :react-native-safe-area-context:preReleaseBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:generateReleaseResources
+[RUN_GRADLEW] UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:generateReleaseResValues
+[RUN_GRADLEW] UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:packageReleaseResources UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:packageReleaseResources UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:preReleaseBuild UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:generateReleaseResources UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:generateReleaseResValues UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:extractDeepLinksRelease
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:packageReleaseResources UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:packageReleaseResources
+[RUN_GRADLEW] > Task :react-native-safe-area-context:packageReleaseResources UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:packageReleaseResources
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:extractDeepLinksRelease
+[RUN_GRADLEW] > Task :react-native-screens:generateReleaseResources UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-json-utils:extractDeepLinksRelease
+[RUN_GRADLEW] > Task :expo-manifests:extractDeepLinksRelease
+[RUN_GRADLEW] > Task :expo-dev-launcher:extractDeepLinksRelease
+[RUN_GRADLEW] > Task :react-native-screens:packageReleaseResources
+[RUN_GRADLEW] UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-json-utils:processReleaseManifest
+[RUN_GRADLEW] > Task :expo-dev-launcher:processReleaseManifest
+[RUN_GRADLEW] > Task :expo-dev-client:processReleaseManifest
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:processReleaseManifest
+[RUN_GRADLEW] > Task :expo-manifests:processReleaseManifest
+[RUN_GRADLEW] > Task :expo-modules-core:extractDeepLinksRelease
+[RUN_GRADLEW] > Task :react-native-reanimated:assertMinimalReactNativeVersionTask
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:extractDeepLinksRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:extractDeepLinksRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:assertNewArchitectureEnabledTask SKIPPED
+[RUN_GRADLEW] > Task :react-native-gesture-handler:extractDeepLinksRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:extractDeepLinksRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:processReleaseManifest UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:processReleaseManifest UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:processReleaseManifest UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:processReleaseManifest UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:extractDeepLinksRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu:packageReleaseResources
+[RUN_GRADLEW] > Task :expo-dev-client:writeReleaseAarMetadata
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:writeReleaseAarMetadata
+[RUN_GRADLEW] > Task :expo-dev-launcher:writeReleaseAarMetadata
+[RUN_GRADLEW] > Task :react-native-screens:processReleaseManifest UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:writeReleaseAarMetadata UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu:extractDeepLinksRelease
+[RUN_GRADLEW] > Task :expo-json-utils:writeReleaseAarMetadata
+[RUN_GRADLEW] > Task :expo-modules-core:writeReleaseAarMetadata
+[RUN_GRADLEW] > Task :expo-manifests:writeReleaseAarMetadata
+[RUN_GRADLEW] > Task :react-native-safe-area-context:writeReleaseAarMetadata UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:writeReleaseAarMetadata UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:writeReleaseAarMetadata
+[RUN_GRADLEW] UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-modules-core:processReleaseManifest
+[RUN_GRADLEW] /private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:8:9-11:45 Warning:
+[RUN_GRADLEW] 	meta-data#com.facebook.soloader.enabled@android:value was tagged at AndroidManifest.xml:8 to replace other declarations but no other declaration present
+[RUN_GRADLEW] > Task :expo-dev-client:compileReleaseLibraryResources
+[RUN_GRADLEW] > Task :expo-json-utils:compileReleaseLibraryResources
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:compileReleaseLibraryResources
+[RUN_GRADLEW] > Task :expo-dev-menu:processReleaseManifest
+[RUN_GRADLEW] > Task :expo-dev-menu:writeReleaseAarMetadata
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:writeReleaseAarMetadata UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:extractDeepLinksRelease
+[RUN_GRADLEW] > Task :expo-dev-client:parseReleaseLocalResources
+[RUN_GRADLEW] > Task :expo-dev-launcher:parseReleaseLocalResources
+[RUN_GRADLEW] > Task :react-native-reanimated:assertWorkletsVersionTask
+[RUN_GRADLEW] > Task :react-native-reanimated:generateCodegenSchemaFromJavaScript UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:generateCodegenArtifactsFromSchema UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:parseReleaseLocalResources
+[RUN_GRADLEW] > Task :expo-updates-interface:writeReleaseAarMetadata
+[RUN_GRADLEW] > Task :expo-updates-interface:processReleaseManifest
+[RUN_GRADLEW] > Task :expo-dev-client:generateReleaseRFile
+[RUN_GRADLEW] > Task :expo-dev-launcher:compileReleaseLibraryResources
+[RUN_GRADLEW] > Task :expo-dev-menu:parseReleaseLocalResources
+[RUN_GRADLEW] > Task :react-native-worklets:assertMinimalReactNativeVersionTask
+[RUN_GRADLEW] > Task :react-native-worklets:assertNewArchitectureEnabledTask SKIPPED
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:generateReleaseRFile
+[RUN_GRADLEW] > Task :expo-dev-launcher:generateReleaseRFile
+[RUN_GRADLEW] > Task :expo-manifests:compileReleaseLibraryResources
+[RUN_GRADLEW] > Task :expo-json-utils:parseReleaseLocalResources
+[RUN_GRADLEW] > Task :expo-modules-core:compileReleaseLibraryResources
+[RUN_GRADLEW] > Task :react-native-worklets:generateCodegenSchemaFromJavaScript UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:compileReleaseLibraryResources UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu:compileReleaseLibraryResources
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:parseReleaseLocalResources UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:compileReleaseLibraryResources UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:generateCodegenArtifactsFromSchema UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:compileReleaseLibraryResources
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:parseReleaseLocalResources UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-modules-core:parseReleaseLocalResources
+[RUN_GRADLEW] > Task :expo-manifests:parseReleaseLocalResources
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:generateReleaseRFile UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:generateReleaseRFile UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-json-utils:generateReleaseRFile
+[RUN_GRADLEW] > Task :react-native-gesture-handler:compileReleaseLibraryResources UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:compileReleaseLibraryResources UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:parseReleaseLocalResources UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:parseReleaseLocalResources UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:parseReleaseLocalResources
+[RUN_GRADLEW] > Task :react-native-safe-area-context:generateReleaseRFile UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:compileReleaseLibraryResources UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :react-native-gesture-handler:generateReleaseRFile UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :react-native-screens:parseReleaseLocalResources UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:generateReleaseBuildConfig UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:generateReleaseBuildConfig UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-modules-core:generateReleaseRFile
+[RUN_GRADLEW] > Task :react-native-safe-area-context:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :react-native-gesture-handler:javaPreCompileRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:generateReleaseBuildConfig UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:generateReleaseBuildConfig
+[RUN_GRADLEW] UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:generateReleaseRFile UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :expo-manifests:generateReleaseRFile
+[RUN_GRADLEW] > Task :expo-dev-menu:generateReleaseRFile
+[RUN_GRADLEW] > Task :expo-modules-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :expo-dev-client:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :react-native-worklets:prepareWorkletsHeadersForPrefabs UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:javaPreCompileRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:generateReleaseBuildConfig UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:preBuild
+[RUN_GRADLEW] > Task :react-native-worklets:preReleaseBuild
+[RUN_GRADLEW] > Task :expo-updates-interface:generateReleaseRFile
+[RUN_GRADLEW] > Task :react-native-reanimated:prepareReanimatedHeadersForPrefabs UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:preBuild
+[RUN_GRADLEW] > Task :expo-dev-launcher:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :react-native-reanimated:preReleaseBuild
+[RUN_GRADLEW] > Task :react-native-worklets:generateReleaseResValues UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-modules-core:generateReleaseBuildConfig
+[RUN_GRADLEW] > Task :react-native-reanimated:generateReleaseResValues UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:generateReleaseResources UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:dataBindingMergeDependencyArtifactsRelease
+[RUN_GRADLEW] > Task :react-native-reanimated:generateReleaseResources UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:packageReleaseResources UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:extractDeepLinksRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:packageReleaseResources UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:extractDeepLinksRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:processReleaseManifest UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:writeReleaseAarMetadata UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:compileReleaseLibraryResources UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:dataBindingGenBaseClassesRelease
+[RUN_GRADLEW] > Task :react-native-worklets:parseReleaseLocalResources UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:generateReleaseRFile UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:generateReleaseBuildConfig
+[RUN_GRADLEW] > Task :react-native-worklets:generateReleaseBuildConfig UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:javaPreCompileRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:compileReleaseJavaWithJavac UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:javaPreCompileRelease
+[RUN_GRADLEW] > Task :expo-dev-menu:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:bundleLibRuntimeToDirRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:dataBindingMergeDependencyArtifactsRelease
+[RUN_GRADLEW] > Task :expo-dev-menu:generateReleaseBuildConfig
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :react-native-safe-area-context:compileReleaseKotlin UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-json-utils:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :react-native-safe-area-context:javaPreCompileRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:compileReleaseJavaWithJavac UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:generateReleaseBuildConfig
+[RUN_GRADLEW] > Task :expo-json-utils:generateReleaseBuildConfig
+[RUN_GRADLEW] > Task :react-native-worklets:bundleLibCompileToJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-manifests:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:javaPreCompileRelease
+[RUN_GRADLEW] > Task :expo-json-utils:javaPreCompileRelease
+[RUN_GRADLEW] > Task :expo-updates-interface:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:compileReleaseKotlin UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-manifests:generateReleaseBuildConfig
+[RUN_GRADLEW] > Task :react-native-safe-area-context:compileReleaseJavaWithJavac UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:javaPreCompileRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu:javaPreCompileRelease
+[RUN_GRADLEW] > Task :expo-updates-interface:generateReleaseBuildConfig
+[RUN_GRADLEW] > Task :expo-manifests:javaPreCompileRelease
+[RUN_GRADLEW] > Task :react-native-worklets:bundleLibRuntimeToDirRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:bundleLibRuntimeToDirRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:bundleLibCompileToJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:bundleLibCompileToJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:javaPreCompileRelease
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:compileReleaseJavaWithJavac UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:mergeReleaseShaders
+[RUN_GRADLEW] > Task :expo-dev-client:mergeReleaseShaders
+[RUN_GRADLEW] > Task :expo-dev-menu:mergeReleaseShaders
+[RUN_GRADLEW] > Task :expo-dev-menu:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :expo-dev-client:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :expo-dev-client:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:bundleLibRuntimeToDirRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:mergeReleaseAssets
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:mergeReleaseAssets
+[RUN_GRADLEW] > Task :expo-json-utils:mergeReleaseShaders
+[RUN_GRADLEW] > Task :expo-dev-menu:mergeReleaseAssets
+[RUN_GRADLEW] > Task :expo-json-utils:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :expo-json-utils:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:bundleLibCompileToJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:mergeReleaseShaders UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-manifests:mergeReleaseShaders
+[RUN_GRADLEW] > Task :expo-updates-interface:mergeReleaseShaders
+[RUN_GRADLEW] > Task :expo-manifests:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :expo-updates-interface:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :expo-updates-interface:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-manifests:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-json-utils:mergeReleaseAssets
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:mergeReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:mergeReleaseShaders UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:mergeReleaseShaders UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:mergeReleaseShaders UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:mergeReleaseAssets
+[RUN_GRADLEW] > Task :expo-manifests:mergeReleaseAssets
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:mergeReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:mergeReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:bundleLibRuntimeToJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:mergeReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:mergeReleaseShaders UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:bundleLibRuntimeToJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-worklets:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:bundleLibRuntimeToJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:mergeReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:processReleaseJavaRes NO-SOURCE
+[RUN_GRADLEW] > Task :expo-dev-client:mergeReleaseJniLibFolders
+[RUN_GRADLEW] > Task :react-native-worklets:bundleLibRuntimeToJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:processReleaseJavaRes UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:processReleaseJavaRes NO-SOURCE
+[RUN_GRADLEW] > Task :expo-dev-client:mergeReleaseNativeLibs NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:processReleaseJavaRes UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu:mergeReleaseJniLibFolders
+[RUN_GRADLEW] > Task :expo-dev-menu:mergeReleaseNativeLibs NO-SOURCE
+[RUN_GRADLEW] > Task :expo-dev-client:copyReleaseJniLibsProjectOnly
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:mergeReleaseJniLibFolders
+[RUN_GRADLEW] > Task :react-native-reanimated:processReleaseManifest UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:mergeReleaseNativeLibs NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-reanimated:writeReleaseAarMetadata UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-json-utils:mergeReleaseJniLibFolders
+[RUN_GRADLEW] > Task :expo-dev-menu:copyReleaseJniLibsProjectOnly
+[RUN_GRADLEW] > Task :expo-json-utils:mergeReleaseNativeLibs NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-reanimated:compileReleaseLibraryResources UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-manifests:mergeReleaseJniLibFolders
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:copyReleaseJniLibsProjectOnly
+[RUN_GRADLEW] > Task :react-native-reanimated:parseReleaseLocalResources UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-manifests:mergeReleaseNativeLibs NO-SOURCE
+[RUN_GRADLEW] > Task :expo-json-utils:copyReleaseJniLibsProjectOnly
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:mergeReleaseJniLibFolders UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:mergeReleaseJniLibFolders UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:generateReleaseRFile UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:mergeReleaseNativeLibs NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:mergeReleaseNativeLibs NO-SOURCE
+[RUN_GRADLEW] > Task :expo-manifests:copyReleaseJniLibsProjectOnly
+[RUN_GRADLEW] > Task :expo-updates-interface:mergeReleaseJniLibFolders
+[RUN_GRADLEW] > Task :react-native-reanimated:generateReleaseBuildConfig UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:copyReleaseJniLibsProjectOnly UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:copyReleaseJniLibsProjectOnly UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:javaPreCompileRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:mergeReleaseNativeLibs NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:mergeReleaseJniLibFolders UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:mergeReleaseJniLibFolders UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:prepareReleaseArtProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:mergeReleaseNativeLibs NO-SOURCE
+[RUN_GRADLEW] > Task :expo-dev-menu:prepareReleaseArtProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:prepareReleaseArtProfile
+[RUN_GRADLEW] UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:copyReleaseJniLibsProjectOnly UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:copyReleaseJniLibsProjectOnly
+[RUN_GRADLEW] > Task :react-native-screens:compileReleaseKotlin UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-json-utils:prepareReleaseArtProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:prepareReleaseArtProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-manifests:prepareReleaseArtProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:prepareReleaseArtProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:javaPreCompileRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:prepareReleaseArtProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:prepareReleaseArtProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:prepareReleaseArtProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:extractProguardFiles
+[RUN_GRADLEW] > Task :expo-dev-menu:extractProguardFiles
+[RUN_GRADLEW] > Task :expo-json-utils:extractProguardFiles
+[RUN_GRADLEW] > Task :expo-json-utils:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-manifests:extractProguardFiles
+[RUN_GRADLEW] > Task :expo-manifests:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:compileReleaseJavaWithJavac UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:extractProguardFiles
+[RUN_GRADLEW] > Task :expo-updates-interface:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:createFullJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:compileReleaseJavaWithJavac UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:createFullJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:extractProguardFiles
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:extractProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:bundleLibCompileToJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:extractProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:createFullJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:bundleLibRuntimeToDirRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:extractProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:dataBindingGenBaseClassesRelease
+[RUN_GRADLEW] > Task :react-native-reanimated:mergeReleaseShaders UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-reanimated:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:mergeReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:generateReleaseBuildConfig
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:generateReleaseLintModel UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:bundleLibRuntimeToJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:bundleLibRuntimeToDirRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:processReleaseJavaRes NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:generateReleaseLintModel UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:checkApolloVersions
+[RUN_GRADLEW] > Task :react-native-safe-area-context:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:bundleLibCompileToJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:mergeReleaseJniLibFolders UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:stripReleaseDebugSymbols NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-screens:mergeReleaseShaders UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:prepareReleaseArtProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-screens:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:createFullJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:mergeReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:extractProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:bundleLibRuntimeToJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:generateServiceApolloOptions
+[RUN_GRADLEW] > Task :react-native-safe-area-context:stripReleaseDebugSymbols NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:generateReleaseLintModel UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:processReleaseJavaRes UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:stripReleaseDebugSymbols NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:javaPreCompileRelease
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:mergeReleaseShaders
+[RUN_GRADLEW] > Task :expo-dev-launcher:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :expo-dev-launcher:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:extractReleaseAnnotations UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:extractReleaseAnnotations UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:mergeReleaseAssets
+[RUN_GRADLEW] > Task :react-native-safe-area-context:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:mergeReleaseJavaResource UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:mergeReleaseJavaResource UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:configureCMakeRelWithDebInfo[arm64-v8a]
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:syncReleaseLibJars UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:syncReleaseLibJars UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:bundleReleaseLocalLintAar UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:bundleReleaseLocalLintAar UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:extractReleaseAnnotations UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu:stripReleaseDebugSymbols NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:extractReleaseAnnotations UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:mergeReleaseJavaResource UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:syncReleaseLibJars UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu:copyReleaseJniLibsProjectAndLocalJars
+[RUN_GRADLEW] > Task :react-native-reanimated:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:bundleReleaseLocalLintAar UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:stripReleaseDebugSymbols NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-reanimated:mergeReleaseJavaResource UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:stripReleaseDebugSymbols NO-SOURCE
+[RUN_GRADLEW] > Task :react-native-reanimated:syncReleaseLibJars UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-manifests:stripReleaseDebugSymbols NO-SOURCE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:copyReleaseJniLibsProjectAndLocalJars
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-json-utils:stripReleaseDebugSymbols NO-SOURCE
+[RUN_GRADLEW] > Task :expo-manifests:copyReleaseJniLibsProjectAndLocalJars
+[RUN_GRADLEW] > Task :expo-dev-client:copyReleaseJniLibsProjectAndLocalJars
+[RUN_GRADLEW] > Task :expo-json-utils:copyReleaseJniLibsProjectAndLocalJars
+[RUN_GRADLEW] > Task :expo-dev-client:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-manifests:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:stripReleaseDebugSymbols NO-SOURCE
+[RUN_GRADLEW] > Task :expo-json-utils:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:writeReleaseLintModelMetadata
+[RUN_GRADLEW] > Task :expo-updates-interface:copyReleaseJniLibsProjectAndLocalJars
+[RUN_GRADLEW] > Task :expo-dev-menu:writeReleaseLintModelMetadata
+[RUN_GRADLEW] > Task :react-native-screens:buildCMakeRelWithDebInfo[arm64-v8a]
+[RUN_GRADLEW] > Task :expo-updates-interface:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-json-utils:writeReleaseLintModelMetadata
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:writeReleaseLintModelMetadata
+[RUN_GRADLEW] > Task :expo-manifests:writeReleaseLintModelMetadata
+[RUN_GRADLEW] > Task :expo-updates-interface:writeReleaseLintModelMetadata
+[RUN_GRADLEW] > Task :expo-dev-launcher:mergeReleaseJniLibFolders
+[RUN_GRADLEW] > Task :expo-dev-launcher:mergeReleaseNativeLibs NO-SOURCE
+[RUN_GRADLEW] > Task :expo-dev-launcher:copyReleaseJniLibsProjectOnly
+[RUN_GRADLEW] > Task :expo-dev-launcher:prepareReleaseArtProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:compileReleaseKotlin UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:extractProguardFiles
+[RUN_GRADLEW] > Task :expo-dev-launcher:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:stripReleaseDebugSymbols NO-SOURCE
+[RUN_GRADLEW] > Task :expo-dev-launcher:copyReleaseJniLibsProjectAndLocalJars
+[RUN_GRADLEW] > Task :expo-dev-launcher:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:writeReleaseLintModelMetadata
+[RUN_GRADLEW] > Task :react-native-gesture-handler:compileReleaseJavaWithJavac UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:configureCMakeRelWithDebInfo[armeabi-v7a]
+[RUN_GRADLEW] > Task :react-native-safe-area-context:lintVitalAnalyzeRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:bundleLibRuntimeToDirRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:bundleLibCompileToJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:bundleLibRuntimeToJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:buildCMakeRelWithDebInfo[armeabi-v7a]
+[RUN_GRADLEW] > Task :react-native-gesture-handler:processReleaseJavaRes UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:createFullJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:extractProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:lintVitalAnalyzeRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:writeReleaseLintModelMetadata UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-reanimated:writeReleaseLintModelMetadata UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:extractReleaseAnnotations UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-safe-area-context:generateReleaseLintVitalModel UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:configureCMakeRelWithDebInfo[x86]
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:lintVitalAnalyzeRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:writeReleaseLintModelMetadata UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:writeReleaseLintModelMetadata UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-async-storage_async-storage:generateReleaseLintVitalModel UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-community_datetimepicker:generateReleaseLintVitalModel UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:mergeReleaseJavaResource UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:syncReleaseLibJars UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-gesture-handler:writeReleaseLintModelMetadata UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:buildCMakeRelWithDebInfo[x86]
+[RUN_GRADLEW] > Task :react-native-screens:configureCMakeRelWithDebInfo[x86_64]
+[RUN_GRADLEW] > Task :expo-modules-core:javaPreCompileRelease
+[RUN_GRADLEW] > Task :expo-modules-core:mergeReleaseShaders
+[RUN_GRADLEW] > Task :expo-modules-core:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :expo-modules-core:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-modules-core:mergeReleaseAssets
+[RUN_GRADLEW] > Task :react-native-screens:buildCMakeRelWithDebInfo[x86_64]
+[RUN_GRADLEW] > Task :react-native-screens:mergeReleaseJniLibFolders UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:mergeReleaseNativeLibs UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:copyReleaseJniLibsProjectOnly UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:prepareReleaseArtProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:createFullJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:extractProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:generateReleaseLintModel UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-constants:createExpoConfig
+[RUN_GRADLEW] env: load .env.production .env
+[RUN_GRADLEW] env: export PORT FIREBASE_BASE CLERK_PUBLISHABLE_KEY API_BASE_URL
+[RUN_GRADLEW] > Task :expo-constants:preBuild
+[RUN_GRADLEW] > Task :expo-constants:preReleaseBuild
+[RUN_GRADLEW] > Task :react-native-screens:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-constants:generateReleaseResValues
+[RUN_GRADLEW] > Task :react-native-screens:stripReleaseDebugSymbols UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-constants:generateReleaseResources
+[RUN_GRADLEW] > Task :react-native-screens:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:extractReleaseAnnotations UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-constants:packageReleaseResources
+[RUN_GRADLEW] > Task :react-native-screens:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-constants:extractDeepLinksRelease
+[RUN_GRADLEW] > Task :react-native-screens:mergeReleaseJavaResource UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:syncReleaseLibJars UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-screens:bundleReleaseLocalLintAar UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-constants:writeReleaseAarMetadata
+[RUN_GRADLEW] > Task :expo-constants:processReleaseManifest
+[RUN_GRADLEW] > Task :expo-constants:compileReleaseLibraryResources
+[RUN_GRADLEW] > Task :expo-constants:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :react-native-screens:lintVitalAnalyzeRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-constants:parseReleaseLocalResources
+[RUN_GRADLEW] > Task :react-native-screens:writeReleaseLintModelMetadata UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-constants:generateReleaseBuildConfig
+[RUN_GRADLEW] > Task :react-native-screens:generateReleaseLintVitalModel UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-constants:javaPreCompileRelease
+[RUN_GRADLEW] > Task :expo-constants:generateReleaseRFile
+[RUN_GRADLEW] > Task :expo-constants:mergeReleaseShaders
+[RUN_GRADLEW] > Task :expo-constants:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :expo-constants:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-constants:mergeReleaseAssets
+[RUN_GRADLEW] > Task :expo-constants:mergeReleaseJniLibFolders
+[RUN_GRADLEW] > Task :expo-constants:mergeReleaseNativeLibs NO-SOURCE
+[RUN_GRADLEW] > Task :expo-constants:copyReleaseJniLibsProjectOnly
+[RUN_GRADLEW] > Task :expo-constants:prepareReleaseArtProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-constants:extractProguardFiles
+[RUN_GRADLEW] > Task :expo-constants:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-constants:stripReleaseDebugSymbols NO-SOURCE
+[RUN_GRADLEW] > Task :expo-constants:copyReleaseJniLibsProjectAndLocalJars
+[RUN_GRADLEW] > Task :expo-constants:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-constants:writeReleaseLintModelMetadata
+[RUN_GRADLEW] > Task :expo:generatePackagesList
+[RUN_GRADLEW] > Task :expo:preBuild
+[RUN_GRADLEW] > Task :expo:preReleaseBuild
+[RUN_GRADLEW] > Task :expo:generateReleaseResValues
+[RUN_GRADLEW] > Task :expo:generateReleaseResources
+[RUN_GRADLEW] > Task :expo:packageReleaseResources
+[RUN_GRADLEW] > Task :expo:extractDeepLinksRelease
+[RUN_GRADLEW] > Task :expo:writeReleaseAarMetadata
+[RUN_GRADLEW] > Task :expo:processReleaseManifest
+[RUN_GRADLEW] > Task :expo:compileReleaseLibraryResources
+[RUN_GRADLEW] > Task :expo:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :expo:parseReleaseLocalResources
+[RUN_GRADLEW] > Task :expo:generateReleaseBuildConfig
+[RUN_GRADLEW] > Task :expo:javaPreCompileRelease
+[RUN_GRADLEW] > Task :expo:generateReleaseRFile
+[RUN_GRADLEW] > Task :expo:mergeReleaseShaders
+[RUN_GRADLEW] > Task :expo:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :expo:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :expo:mergeReleaseAssets
+[RUN_GRADLEW] > Task :expo:mergeReleaseJniLibFolders
+[RUN_GRADLEW] > Task :expo:mergeReleaseNativeLibs NO-SOURCE
+[RUN_GRADLEW] > Task :expo:copyReleaseJniLibsProjectOnly
+[RUN_GRADLEW] > Task :expo:prepareReleaseArtProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :expo:extractProguardFiles
+[RUN_GRADLEW] > Task :expo:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :expo:stripReleaseDebugSymbols NO-SOURCE
+[RUN_GRADLEW] > Task :expo:copyReleaseJniLibsProjectAndLocalJars
+[RUN_GRADLEW] > Task :expo:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo:writeReleaseLintModelMetadata
+[RUN_GRADLEW] > Task :app:createBundleReleaseJsAndAssets
+[RUN_GRADLEW] env: load .env.production .env
+[RUN_GRADLEW] env: export PORT FIREBASE_BASE CLERK_PUBLISHABLE_KEY API_BASE_URL
+[RUN_GRADLEW] > Task :expo-dev-launcher:generateServiceApolloSources
+[RUN_GRADLEW] w: /private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/graphql/GetBranches.graphql: (21, 11): Apollo: Use of deprecated field `runtimeVersion`
+[RUN_GRADLEW] w: /private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/graphql/GetBranches.graphql: (34, 3): Apollo: Variable `platform` is unused
+[RUN_GRADLEW] w: /private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/graphql/GetUpdates.graphql: (14, 11): Apollo: Use of deprecated field `runtimeVersion`
+[RUN_GRADLEW] > Task :app:createBundleReleaseJsAndAssets
+[RUN_GRADLEW] React Compiler enabled
+[RUN_GRADLEW] Starting Metro Bundler
+[RUN_GRADLEW] warning: Bundler cache is empty, rebuilding (this may take a minute)
+[RUN_GRADLEW] > Task :react-native-worklets:configureCMakeRelWithDebInfo[arm64-v8a]
+[RUN_GRADLEW] > Task :expo-modules-core:configureCMakeRelWithDebInfo[arm64-v8a]
+[RUN_GRADLEW] > Task :react-native-worklets:configureCMakeRelWithDebInfo[armeabi-v7a]
+[RUN_GRADLEW] > Task :app:createBundleReleaseJsAndAssets
+[RUN_GRADLEW] Android node_modules/expo-router/entry.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+[RUN_GRADLEW] > Task :react-native-worklets:configureCMakeRelWithDebInfo[x86]
+[RUN_GRADLEW] > Task :app:createBundleReleaseJsAndAssets
+[RUN_GRADLEW] Android node_modules/expo-router/entry.js ▓▓░░░░░░░░░░░░░░ 16.0% (22/73)
+[RUN_GRADLEW] > Task :react-native-worklets:configureCMakeRelWithDebInfo[x86_64]
+[RUN_GRADLEW] > Task :react-native-worklets:generateJsonModelRelease
+[RUN_GRADLEW] > Task :react-native-worklets:prefabReleaseConfigurePackage
+[RUN_GRADLEW] > Task :app:createBundleReleaseJsAndAssets
+[RUN_GRADLEW] Android node_modules/expo-router/entry.js ▓▓▓░░░░░░░░░░░░░ 21.6% ( 65/140)
+[RUN_GRADLEW] Android node_modules/expo-router/entry.js ▓▓▓▓▓░░░░░░░░░░░ 36.1% (230/411)
+[RUN_GRADLEW] Android node_modules/expo-router/entry.js ▓▓▓▓▓▓▓░░░░░░░░░ 48.5% (357/553)
+[RUN_GRADLEW] Android node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓░░░░░░░░ 51.9% (456/633)
+[RUN_GRADLEW] Android node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓░░░░░░░ 60.6% (583/819)
+[RUN_GRADLEW] > Task :expo-modules-core:compileReleaseKotlin
+[RUN_GRADLEW] > Task :expo-modules-core:buildCMakeRelWithDebInfo[arm64-v8a]
+[RUN_GRADLEW] > Task :react-native-reanimated:configureCMakeRelWithDebInfo[arm64-v8a]
+[RUN_GRADLEW] > Task :react-native-worklets:buildCMakeRelWithDebInfo[arm64-v8a][worklets]
+[RUN_GRADLEW] > Task :expo-modules-core:compileReleaseKotlin
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/android/src/main/java/expo/modules/adapters/react/apploader/RNHeadlessAppLoader.kt:48:87 'val reactNativeHost: ReactNativeHost' is deprecated. You should not use ReactNativeHost directly in the New Architecture. Use ReactHost instead.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/android/src/main/java/expo/modules/adapters/react/apploader/RNHeadlessAppLoader.kt:91:85 'val reactNativeHost: ReactNativeHost' is deprecated. You should not use ReactNativeHost directly in the New Architecture. Use ReactHost instead.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/android/src/main/java/expo/modules/adapters/react/apploader/RNHeadlessAppLoader.kt:120:83 'val reactNativeHost: ReactNativeHost' is deprecated. You should not use ReactNativeHost directly in the New Architecture. Use ReactHost instead.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/android/src/main/java/expo/modules/apploader/AppLoaderProvider.kt:34:52 Unchecked cast of 'Class<*>!' to 'Class<out HeadlessAppLoader>'.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/AppContext.kt:30:8 'typealias ErrorManagerModule = JSLoggerModule' is deprecated. Use JSLoggerModule instead.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/AppContext.kt:253:21 'typealias ErrorManagerModule = JSLoggerModule' is deprecated. Use JSLoggerModule instead.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/AppContext.kt:343:21 'val DEFAULT: Int' is deprecated. UIManagerType.DEFAULT will be deleted in the next release of React Native. Use [LEGACY] instead.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/defaultmodules/NativeModulesProxyModule.kt:16:5 'fun Constants(legacyConstantsProvider: () -> Map<String, Any?>): Unit' is deprecated. Use `Constant` or `Property` instead.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/jni/PromiseImpl.kt:65:51 'val errorManager: JSLoggerModule?' is deprecated. Use AppContext.jsLogger instead.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/jni/PromiseImpl.kt:69:22 'fun reportExceptionToLogBox(codedException: CodedException): Unit' is deprecated. Use appContext.jsLogger.error(...) instead.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewDefinitionBuilder.kt:464:16 'val errorManager: JSLoggerModule?' is deprecated. Use AppContext.jsLogger instead.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewDefinitionBuilder.kt:464:30 'fun reportExceptionToLogBox(codedException: CodedException): Unit' is deprecated. Use appContext.jsLogger.error(...) instead.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewManagerDefinition.kt:41:16 'val errorManager: JSLoggerModule?' is deprecated. Use AppContext.jsLogger instead.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewManagerDefinition.kt:41:30 'fun reportExceptionToLogBox(codedException: CodedException): Unit' is deprecated. Use appContext.jsLogger.error(...) instead.
+[RUN_GRADLEW] > Task :app:createBundleReleaseJsAndAssets
+[RUN_GRADLEW] Android node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓░░░░░░ 66.9% (721/887)
+[RUN_GRADLEW] Android node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓░░░░ 79.0% (872/981)
+[RUN_GRADLEW] Android node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░ 90.8% (1015/1065)
+[RUN_GRADLEW] Android node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 95.4% (1231/1268)
+[RUN_GRADLEW] Android node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.8% (1276/1277)
+[RUN_GRADLEW] Android node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (1277/1277)
+[RUN_GRADLEW] Android Bundled 46762ms node_modules/expo-router/entry.js (1278 modules)
+[RUN_GRADLEW] Writing bundle output to: /private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/android/app/build/generated/assets/createBundleReleaseJsAndAssets/index.android.bundle
+[RUN_GRADLEW] Writing sourcemap output to: /private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/android/app/build/intermediates/sourcemaps/react/release/index.android.bundle.packager.map
+[RUN_GRADLEW] Copying 45 asset files
+[RUN_GRADLEW] Done writing bundle output
+[RUN_GRADLEW] Done writing sourcemap output
+[RUN_GRADLEW] > Task :expo-modules-core:compileReleaseJavaWithJavac
+[RUN_GRADLEW] > Task :expo-modules-core:processReleaseJavaRes
+[RUN_GRADLEW] > Task :expo-modules-core:bundleLibCompileToJarRelease
+[RUN_GRADLEW] > Task :expo-modules-core:bundleLibRuntimeToJarRelease
+[RUN_GRADLEW] > Task :expo-modules-core:bundleLibRuntimeToDirRelease
+[RUN_GRADLEW] > Task :expo-modules-core:configureCMakeRelWithDebInfo[armeabi-v7a]
+[RUN_GRADLEW] > Task :expo-dev-client:compileReleaseKotlin NO-SOURCE
+[RUN_GRADLEW] > Task :expo-dev-client:compileReleaseJavaWithJavac
+[RUN_GRADLEW] > Task :expo-dev-client:bundleLibCompileToJarRelease
+[RUN_GRADLEW] > Task :expo-dev-client:bundleLibRuntimeToDirRelease
+[RUN_GRADLEW] > Task :expo-dev-client:bundleLibRuntimeToJarRelease
+[RUN_GRADLEW] > Task :expo-dev-client:processReleaseJavaRes NO-SOURCE
+[RUN_GRADLEW] > Task :expo-dev-client:createFullJarRelease
+[RUN_GRADLEW] > Task :expo-dev-client:extractReleaseAnnotations
+[RUN_GRADLEW] > Task :expo-dev-client:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:mergeReleaseJavaResource
+[RUN_GRADLEW] > Task :expo-dev-client:syncReleaseLibJars
+[RUN_GRADLEW] > Task :expo-dev-client:bundleReleaseLocalLintAar
+[RUN_GRADLEW] > Task :expo-json-utils:compileReleaseKotlin
+[RUN_GRADLEW] > Task :expo-updates-interface:compileReleaseKotlin
+[RUN_GRADLEW] > Task :expo-updates-interface:compileReleaseJavaWithJavac
+[RUN_GRADLEW] > Task :expo-updates-interface:bundleLibCompileToJarRelease
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:compileReleaseKotlin
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-menu-interface/android/src/main/java/expo/interfaces/devmenu/DevMenuInterfacePackage.kt:14:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-menu-interface/android/src/main/java/expo/interfaces/devmenu/ReactHostWrapper.kt:5:8 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-menu-interface/android/src/main/java/expo/interfaces/devmenu/ReactHostWrapper.kt:19:41 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-menu-interface/android/src/main/java/expo/interfaces/devmenu/ReactHostWrapper.kt:20:33 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] > Task :expo-updates-interface:bundleLibRuntimeToJarRelease
+[RUN_GRADLEW] > Task :expo-updates-interface:bundleLibRuntimeToDirRelease
+[RUN_GRADLEW] > Task :expo-json-utils:compileReleaseJavaWithJavac
+[RUN_GRADLEW] > Task :expo-json-utils:bundleLibCompileToJarRelease
+[RUN_GRADLEW] > Task :expo-json-utils:bundleLibRuntimeToJarRelease
+[RUN_GRADLEW] > Task :expo-json-utils:bundleLibRuntimeToDirRelease
+[RUN_GRADLEW] > Task :expo-constants:compileReleaseKotlin
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-constants/android/src/main/java/expo/modules/constants/ConstantsModule.kt:12:5 'fun Constants(legacyConstantsProvider: () -> Map<String, Any?>): Unit' is deprecated. Use `Constant` or `Property` instead.
+[RUN_GRADLEW] > Task :expo-updates-interface:processReleaseJavaRes
+[RUN_GRADLEW] > Task :expo-json-utils:processReleaseJavaRes
+[RUN_GRADLEW] > Task :expo-json-utils:createFullJarRelease
+[RUN_GRADLEW] > Task :expo-updates-interface:createFullJarRelease
+[RUN_GRADLEW] > Task :expo-json-utils:extractReleaseAnnotations
+[RUN_GRADLEW] > Task :expo-json-utils:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-json-utils:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:extractReleaseAnnotations
+[RUN_GRADLEW] > Task :expo-updates-interface:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-updates-interface:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-json-utils:mergeReleaseJavaResource
+[RUN_GRADLEW] > Task :expo-json-utils:syncReleaseLibJars
+[RUN_GRADLEW] > Task :expo-updates-interface:mergeReleaseJavaResource
+[RUN_GRADLEW] > Task :expo-json-utils:bundleReleaseLocalLintAar
+[RUN_GRADLEW] > Task :expo-updates-interface:syncReleaseLibJars
+[RUN_GRADLEW] > Task :expo-updates-interface:bundleReleaseLocalLintAar
+[RUN_GRADLEW] > Task :expo-constants:compileReleaseJavaWithJavac
+[RUN_GRADLEW] > Task :expo-constants:bundleLibCompileToJarRelease
+[RUN_GRADLEW] > Task :expo-constants:bundleLibRuntimeToJarRelease
+[RUN_GRADLEW] > Task :expo-constants:processReleaseJavaRes
+[RUN_GRADLEW] > Task :expo-constants:bundleLibRuntimeToDirRelease
+[RUN_GRADLEW] > Task :expo-constants:createFullJarRelease
+[RUN_GRADLEW] > Task :expo-constants:extractReleaseAnnotations
+[RUN_GRADLEW] > Task :expo-constants:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-constants:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:compileReleaseJavaWithJavac
+[RUN_GRADLEW] > Task :expo-constants:mergeReleaseJavaResource
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:bundleLibCompileToJarRelease
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:bundleLibRuntimeToJarRelease
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:bundleLibRuntimeToDirRelease
+[RUN_GRADLEW] > Task :expo-constants:syncReleaseLibJars
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:processReleaseJavaRes
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:createFullJarRelease
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:extractReleaseAnnotations
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:mergeReleaseGeneratedProguardFiles
+[RUN_GRADLEW] UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:mergeReleaseJavaResource
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:syncReleaseLibJars
+[RUN_GRADLEW] > Task :expo-constants:bundleReleaseLocalLintAar
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:bundleReleaseLocalLintAar
+[RUN_GRADLEW] > Task :expo-manifests:compileReleaseKotlin
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-manifests/android/src/main/java/expo/modules/manifests/core/EmbeddedManifest.kt:19:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-manifests/android/src/main/java/expo/modules/manifests/core/EmbeddedManifest.kt:19:86 'fun getLegacyID(): String' is deprecated. Prefer scopeKey or projectId depending on use case.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-manifests/android/src/main/java/expo/modules/manifests/core/ExpoUpdatesManifest.kt:16:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-manifests/android/src/main/java/expo/modules/manifests/core/Manifest.kt:13:3 Deprecations and opt-ins on a method overridden from 'Any' may not be reported.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-manifests/android/src/main/java/expo/modules/manifests/core/Manifest.kt:15:12 'fun getRawJson(): JSONObject' is deprecated. Prefer to use specific field getters.
+[RUN_GRADLEW] > Task :expo-manifests:compileReleaseJavaWithJavac
+[RUN_GRADLEW] > Task :expo-manifests:bundleLibCompileToJarRelease
+[RUN_GRADLEW] > Task :expo-manifests:bundleLibRuntimeToJarRelease
+[RUN_GRADLEW] > Task :expo-manifests:processReleaseJavaRes
+[RUN_GRADLEW] > Task :expo-manifests:createFullJarRelease
+[RUN_GRADLEW] > Task :expo-manifests:bundleLibRuntimeToDirRelease
+[RUN_GRADLEW] > Task :expo-manifests:extractReleaseAnnotations
+[RUN_GRADLEW] > Task :expo-manifests:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-manifests:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-manifests:mergeReleaseJavaResource
+[RUN_GRADLEW] > Task :expo-manifests:syncReleaseLibJars
+[RUN_GRADLEW] > Task :expo-manifests:bundleReleaseLocalLintAar
+[RUN_GRADLEW] > Task :expo-dev-menu:compileReleaseKotlin
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-menu/android/src/main/java/com/facebook/react/devsupport/DevMenuSettingsBase.kt:6:8 'class PreferenceManager : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-menu/android/src/main/java/com/facebook/react/devsupport/DevMenuSettingsBase.kt:18:51 'class PreferenceManager : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-menu/android/src/main/java/com/facebook/react/devsupport/DevMenuSettingsBase.kt:18:69 'static fun getDefaultSharedPreferences(p0: Context!): SharedPreferences!' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-menu/android/src/main/java/com/facebook/react/devsupport/DevMenuSettingsBase.kt:51:13 This code uses error suppression for 'NOTHING_TO_OVERRIDE'. While it might compile and work, the compiler behavior is UNSPECIFIED and WILL NOT BE PRESERVED. Please report your use case to the Kotlin issue tracker instead: https://kotl.in/issue
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-menu/android/src/main/java/com/facebook/react/devsupport/DevMenuSettingsBase.kt:58:13 This code uses error suppression for 'NOTHING_TO_OVERRIDE'. While it might compile and work, the compiler behavior is UNSPECIFIED and WILL NOT BE PRESERVED. Please report your use case to the Kotlin issue tracker instead: https://kotl.in/issue
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-menu/android/src/main/java/expo/modules/devmenu/DevMenuPackage.kt:28:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-menu/android/src/main/java/expo/modules/devmenu/DevMenuPackage.kt:47:78 'val reactNativeHost: ReactNativeHost' is deprecated. You should not use ReactNativeHost directly in the New Architecture. Use ReactHost instead.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-menu/android/src/release/java/expo/modules/devmenu/DevMenuManager.kt:80:43 The corresponding parameter in the supertype 'DevMenuManagerInterface' is named 'shouldAutoLaunch'. This may cause problems when calling this function with named arguments.
+[RUN_GRADLEW] > Task :expo-dev-menu:compileReleaseJavaWithJavac
+[RUN_GRADLEW] > Task :expo-dev-menu:processReleaseJavaRes
+[RUN_GRADLEW] > Task :expo-dev-menu:bundleLibRuntimeToJarRelease
+[RUN_GRADLEW] > Task :expo-dev-menu:extractReleaseAnnotations
+[RUN_GRADLEW] > Task :expo-dev-menu:bundleLibCompileToJarRelease
+[RUN_GRADLEW] > Task :expo-dev-menu:createFullJarRelease
+[RUN_GRADLEW] > Task :expo-dev-menu:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-menu:mergeReleaseJavaResource
+[RUN_GRADLEW] > Task :expo-dev-menu:syncReleaseLibJars
+[RUN_GRADLEW] > Task :expo-dev-menu:bundleReleaseLocalLintAar
+[RUN_GRADLEW] > Task :expo-dev-menu:bundleLibRuntimeToDirRelease
+[RUN_GRADLEW] > Task :expo-modules-core:buildCMakeRelWithDebInfo[armeabi-v7a]
+[RUN_GRADLEW] > Task :react-native-worklets:buildCMakeRelWithDebInfo[armeabi-v7a][worklets]
+[RUN_GRADLEW] > Task :app:generateAutolinkingNewArchitectureFiles
+[RUN_GRADLEW] > Task :app:generateAutolinkingPackageList
+[RUN_GRADLEW] > Task :app:generateCodegenSchemaFromJavaScript SKIPPED
+[RUN_GRADLEW] > Task :app:generateCodegenArtifactsFromSchema SKIPPED
+[RUN_GRADLEW] > Task :app:generateReactNativeEntryPoint
+[RUN_GRADLEW] > Task :app:preBuild
+[RUN_GRADLEW] > Task :app:preReleaseBuild
+[RUN_GRADLEW] > Task :app:generateReleaseResValues
+[RUN_GRADLEW] > Task :app:processReleaseGoogleServices
+[RUN_GRADLEW] > Task :app:mapReleaseSourceSetPaths
+[RUN_GRADLEW] > Task :app:generateReleaseResources
+[RUN_GRADLEW] > Task :app:createReleaseCompatibleScreenManifests
+[RUN_GRADLEW] > Task :app:extractDeepLinksRelease
+[RUN_GRADLEW] > Task :expo-dev-launcher:compileReleaseKotlin
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/DevLauncherPackage.kt:15:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/DevLauncherRecentlyOpenedAppsRegistry.kt:33:47 Unchecked cast of 'MutableMap<Any?, Any?>' to 'MutableMap<String, Any>'.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/DevLauncherRecentlyOpenedAppsRegistry.kt:51:27 'fun getRawJson(): JSONObject' is deprecated. Prefer to use specific field getters.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:37:23 'constructor(p0: String!, p1: Bitmap!, p2: Int): ActivityManager.TaskDescription' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:63:61 'static field FLAG_TRANSLUCENT_STATUS: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:92:45 'var systemUiVisibility: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:95:68 'static field SYSTEM_UI_FLAG_LIGHT_STATUS_BAR: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:99:67 'static field SYSTEM_UI_FLAG_LIGHT_STATUS_BAR: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:103:67 'static field SYSTEM_UI_FLAG_LIGHT_STATUS_BAR: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:107:15 'var systemUiVisibility: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:115:59 'static field FLAG_FULLSCREEN: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:116:61 'static field FLAG_FORCE_NOT_FULLSCREEN: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:118:59 'static field FLAG_FORCE_NOT_FULLSCREEN: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:119:61 'static field FLAG_FULLSCREEN: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:131:23 'fun replaceSystemWindowInsets(p0: Int, p1: Int, p2: Int, p3: Int): WindowInsets' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:132:25 'val systemWindowInsetLeft: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:134:25 'val systemWindowInsetRight: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:135:25 'val systemWindowInsetBottom: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:150:15 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:160:63 'static field FLAG_TRANSLUCENT_NAVIGATION: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:161:25 'var navigationBarColor: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:171:63 'static field FLAG_TRANSLUCENT_NAVIGATION: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:175:33 'var systemUiVisibility: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:176:33 'static field SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:177:21 'var systemUiVisibility: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:190:29 'var systemUiVisibility: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:191:62 'static field SYSTEM_UI_FLAG_HIDE_NAVIGATION: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:191:101 'static field SYSTEM_UI_FLAG_FULLSCREEN: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:192:63 'static field SYSTEM_UI_FLAG_HIDE_NAVIGATION: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:192:102 'static field SYSTEM_UI_FLAG_FULLSCREEN: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:192:136 'static field SYSTEM_UI_FLAG_IMMERSIVE: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:193:70 'static field SYSTEM_UI_FLAG_HIDE_NAVIGATION: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:193:109 'static field SYSTEM_UI_FLAG_FULLSCREEN: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:193:143 'static field SYSTEM_UI_FLAG_IMMERSIVE_STICKY: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/main/java/expo/modules/devlauncher/launcher/configurators/DevLauncherExpoActivityConfigurator.kt:196:17 'var systemUiVisibility: Int' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/release/java/expo/modules/devlauncher/DevLauncherController.kt:111:81 'val reactNativeHost: ReactNativeHost' is deprecated. You should not use ReactNativeHost directly in the New Architecture. Use ReactHost instead.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/release/java/expo/modules/devlauncher/launcher/DevLauncherReactNativeHost.kt:4:8 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo-dev-launcher/android/src/release/java/expo/modules/devlauncher/launcher/DevLauncherReactNativeHost.kt:8:83 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] > Task :app:processReleaseMainManifest
+[RUN_GRADLEW] /private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/android/app/src/main/AndroidManifest.xml Warning:
+[RUN_GRADLEW] 	provider#expo.modules.filesystem.FileSystemFileProvider@android:authorities was tagged at AndroidManifest.xml:0 to replace other declarations but no other declaration present
+[RUN_GRADLEW] > Task :app:processReleaseManifest
+[RUN_GRADLEW] > Task :app:processApplicationManifestReleaseForBundle
+[RUN_GRADLEW] > Task :app:checkReleaseAarMetadata
+[RUN_GRADLEW] > Task :app:packageReleaseResources
+[RUN_GRADLEW] > Task :app:extractReleaseVersionControlInfo
+[RUN_GRADLEW] > Task :app:parseReleaseLocalResources
+[RUN_GRADLEW] > Task :app:buildKotlinToolingMetadata
+[RUN_GRADLEW] > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[RUN_GRADLEW] > Task :app:generateReleaseBuildConfig
+[RUN_GRADLEW] > Task :app:javaPreCompileRelease
+[RUN_GRADLEW] > Task :app:mergeReleaseResources
+[RUN_GRADLEW] > Task :app:desugarReleaseFileDependencies
+[RUN_GRADLEW] > Task :app:mergeReleaseStartupProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :app:mergeReleaseShaders
+[RUN_GRADLEW] > Task :app:compileReleaseShaders NO-SOURCE
+[RUN_GRADLEW] > Task :app:generateReleaseAssets UP-TO-DATE
+[RUN_GRADLEW] > Task :app:mergeReleaseAssets
+[RUN_GRADLEW] > Task :app:mergeReleaseJniLibFolders
+[RUN_GRADLEW] > Task :app:writeReleaseAppMetadata
+[RUN_GRADLEW] > Task :app:checkReleaseDuplicateClasses
+[RUN_GRADLEW] > Task :expo-dev-launcher:compileReleaseJavaWithJavac
+[RUN_GRADLEW] > Task :expo-dev-launcher:processReleaseJavaRes
+[RUN_GRADLEW] > Task :expo-dev-launcher:bundleLibCompileToJarRelease
+[RUN_GRADLEW] > Task :expo-dev-launcher:bundleLibRuntimeToJarRelease
+[RUN_GRADLEW] > Task :expo-dev-launcher:extractReleaseAnnotations
+[RUN_GRADLEW] > Task :expo-dev-launcher:createFullJarRelease
+[RUN_GRADLEW] > Task :expo-dev-launcher:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-launcher:mergeReleaseJavaResource
+[RUN_GRADLEW] > Task :expo-dev-launcher:syncReleaseLibJars
+[RUN_GRADLEW] > Task :expo-dev-launcher:bundleReleaseLocalLintAar
+[RUN_GRADLEW] > Task :expo-dev-launcher:bundleLibRuntimeToDirRelease
+[RUN_GRADLEW] > Task :app:collectReleaseDependencies
+[RUN_GRADLEW] > Task :app:configureReleaseDependencies
+[RUN_GRADLEW] > Task :app:extractProguardFiles
+[RUN_GRADLEW] > Task :app:parseReleaseIntegrityConfig
+[RUN_GRADLEW] > Task :app:validateSigningRelease
+[RUN_GRADLEW] > Task :app:processReleaseManifestForPackage
+[RUN_GRADLEW] > Task :expo:compileReleaseKotlin
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ExpoModulesPackage.kt:34:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ExpoReactHostFactory.kt:8:8 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ExpoReactHostFactory.kt:80:22 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactActivityDelegateWrapper.kt:25:8 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactActivityDelegateWrapper.kt:59:33 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactActivityDelegateWrapper.kt:106:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactActivityDelegateWrapper.kt:106:38 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactActivityDelegateWrapper.kt:114:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactActivityDelegateWrapper.kt:115:21 'val reactInstanceManager: ReactInstanceManager' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactActivityDelegateWrapper.kt:174:36 'constructor(activity: Activity, reactNativeHost: ReactNativeHost?, appKey: String?, launchOptions: Bundle?, fabricEnabled: Boolean): ReactDelegate' is deprecated. Deprecated since 0.81.0, use one of the other constructors instead.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactActivityDelegateWrapper.kt:285:77 'val reactInstanceManager: ReactInstanceManager' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactActivityDelegateWrapper.kt:288:22 'val reactInstanceManager: ReactInstanceManager' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactActivityDelegateWrapper.kt:292:54 'val reactInstanceManager: ReactInstanceManager' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactNativeHostWrapper.kt:6:8 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactNativeHostWrapper.kt:15:9 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactNativeHostWrapper.kt:47:60 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactNativeHostWrapperBase.kt:7:8 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactNativeHostWrapperBase.kt:16:23 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactNativeHostWrapperBase.kt:89:16 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/ReactNativeHostWrapperBase.kt:101:38 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/fetch/ExpoFetchModule.kt:30:39 'constructor(reactContext: ReactContext): ForwardingCookieHandler' is deprecated. Use the default constructor.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/fetch/NativeResponse.kt:42:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/expo/android/src/main/java/expo/modules/fetch/NativeResponse.kt:44:11 'fun deallocate(): Unit' is deprecated. Use sharedObjectDidRelease() instead.
+[RUN_GRADLEW] > Task :expo:compileReleaseJavaWithJavac
+[RUN_GRADLEW] > Task :expo:processReleaseJavaRes
+[RUN_GRADLEW] > Task :expo:bundleLibCompileToJarRelease
+[RUN_GRADLEW] > Task :expo:bundleLibRuntimeToJarRelease
+[RUN_GRADLEW] > Task :expo:extractReleaseAnnotations
+[RUN_GRADLEW] > Task :expo:createFullJarRelease
+[RUN_GRADLEW] > Task :expo:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo:mergeReleaseConsumerProguardFiles
+[RUN_GRADLEW] > Task :expo:mergeReleaseJavaResource
+[RUN_GRADLEW] > Task :expo:syncReleaseLibJars
+[RUN_GRADLEW] > Task :expo:bundleReleaseLocalLintAar
+[RUN_GRADLEW] > Task :expo:bundleLibRuntimeToDirRelease
+[RUN_GRADLEW] > Task :app:processReleaseResources
+[RUN_GRADLEW] > Task :app:compileReleaseKotlin
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/android/app/src/main/java/com/ddia/lists_app/MainApplication.kt:9:8 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/android/app/src/main/java/com/ddia/lists_app/MainApplication.kt:21:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+[RUN_GRADLEW] w: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/android/app/src/main/java/com/ddia/lists_app/MainApplication.kt:21:33 'class ReactNativeHost : Any' is deprecated. Deprecated in Java.
+[RUN_GRADLEW] > Task :app:compileReleaseJavaWithJavac
+[RUN_GRADLEW] > Task :app:dexBuilderRelease
+[RUN_GRADLEW] > Task :app:processReleaseJavaRes
+[RUN_GRADLEW] > Task :app:mergeReleaseGlobalSynthetics
+[RUN_GRADLEW] > Task :expo-modules-core:configureCMakeRelWithDebInfo[x86]
+[RUN_GRADLEW] > Task :app:bundleReleaseResources
+[RUN_GRADLEW] > Task :app:mergeReleaseJavaResource
+[RUN_GRADLEW] > Task :app:mergeExtDexRelease
+[RUN_GRADLEW] > Task :react-native-worklets:buildCMakeRelWithDebInfo[x86][worklets]
+[RUN_GRADLEW] > Task :expo-modules-core:buildCMakeRelWithDebInfo[x86]
+[RUN_GRADLEW] > Task :app:mergeDexRelease
+[RUN_GRADLEW] > Task :expo-modules-core:configureCMakeRelWithDebInfo[x86_64]
+[RUN_GRADLEW] > Task :react-native-worklets:buildCMakeRelWithDebInfo[x86_64][worklets]
+[RUN_GRADLEW] > Task :react-native-worklets:externalNativeBuildRelease
+[RUN_GRADLEW] > Task :react-native-worklets:prefabReleasePackage
+[RUN_GRADLEW] > Task :react-native-worklets:mergeReleaseJniLibFolders UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:prepareReleaseArtProfile
+[RUN_GRADLEW] UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:createFullJarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:extractProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:generateReleaseLintModel UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:extractReleaseAnnotations UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:mergeReleaseJavaResource UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:syncReleaseLibJars UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:writeReleaseLintModelMetadata UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:lintVitalAnalyzeRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:generateReleaseLintVitalModel UP-TO-DATE
+[RUN_GRADLEW] > Task :react-native-worklets:mergeReleaseNativeLibs
+[RUN_GRADLEW] > Task :expo-modules-core:buildCMakeRelWithDebInfo[x86_64]
+[RUN_GRADLEW] > Task :expo-modules-core:mergeReleaseJniLibFolders
+[RUN_GRADLEW] > Task :expo-modules-core:prepareReleaseArtProfile UP-TO-DATE
+[RUN_GRADLEW] > Task :app:mergeReleaseArtProfile
+[RUN_GRADLEW] > Task :expo-modules-core:createFullJarRelease
+[RUN_GRADLEW] > Task :expo-modules-core:extractProguardFiles
+[RUN_GRADLEW] > Task :react-native-worklets:copyReleaseJniLibsProjectOnly
+[RUN_GRADLEW] > Task :expo-modules-core:generateReleaseLintModel
+[RUN_GRADLEW] > Task :expo-modules-core:prepareLintJarForPublish UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-modules-core:extractDeepLinksForAarRelease UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-dev-client:generateReleaseLintModel
+[RUN_GRADLEW] > Task :expo-json-utils:generateReleaseLintModel
+[RUN_GRADLEW] > Task :expo-updates-interface:generateReleaseLintModel
+[RUN_GRADLEW] > Task :expo-constants:generateReleaseLintModel
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:generateReleaseLintModel
+[RUN_GRADLEW] > Task :expo-json-utils:generateReleaseLintVitalModel
+[RUN_GRADLEW] > Task :expo-updates-interface:generateReleaseLintVitalModel
+[RUN_GRADLEW] > Task :expo-constants:generateReleaseLintVitalModel
+[RUN_GRADLEW] > Task :expo-manifests:generateReleaseLintModel
+[RUN_GRADLEW] > Task :expo-dev-client:generateReleaseLintVitalModel
+[RUN_GRADLEW] > Task :expo-dev-menu-interface:generateReleaseLintVitalModel
+[RUN_GRADLEW] > Task :expo-manifests:generateReleaseLintVitalModel
+[RUN_GRADLEW] > Task :expo-modules-core:extractReleaseAnnotations
+[RUN_GRADLEW] > Task :expo-modules-core:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[RUN_GRADLEW] > Task :expo-modules-core:mergeReleaseConsumerProguardFiles
+[RUN_GRADLEW] > Task :expo-modules-core:writeReleaseLintModelMetadata
+[RUN_GRADLEW] > Task :expo-modules-core:mergeReleaseJavaResource
+[RUN_GRADLEW] > Task :expo-dev-menu:generateReleaseLintModel
+[RUN_GRADLEW] > Task :react-native-worklets:stripReleaseDebugSymbols
+[RUN_GRADLEW] > Task :expo-modules-core:mergeReleaseNativeLibs
+[RUN_GRADLEW] > Task :expo-dev-menu:generateReleaseLintVitalModel
+[RUN_GRADLEW] > Task :expo-dev-launcher:generateReleaseLintModel
+[RUN_GRADLEW] > Task :expo-dev-launcher:generateReleaseLintVitalModel
+[RUN_GRADLEW] > Task :expo:generateReleaseLintModel
+[RUN_GRADLEW] > Task :expo:generateReleaseLintVitalModel
+[RUN_GRADLEW] > Task :react-native-worklets:copyReleaseJniLibsProjectAndLocalJars
+[RUN_GRADLEW] > Task :expo-modules-core:syncReleaseLibJars
+[RUN_GRADLEW] > Task :expo-modules-core:generateReleaseLintVitalModel
+[RUN_GRADLEW] > Task :expo-modules-core:stripReleaseDebugSymbols
+[RUN_GRADLEW] > Task :expo-modules-core:copyReleaseJniLibsProjectAndLocalJars
+[RUN_GRADLEW] > Task :expo-modules-core:bundleReleaseLocalLintAar
+[RUN_GRADLEW] > Task :expo-modules-core:copyReleaseJniLibsProjectOnly
+[RUN_GRADLEW] > Task :app:compileReleaseArtProfile
+[RUN_GRADLEW] > Task :react-native-worklets:bundleReleaseLocalLintAar
+[RUN_GRADLEW] > Task :expo-constants:lintVitalAnalyzeRelease
+[RUN_GRADLEW] > Task :react-native-reanimated:configureCMakeRelWithDebInfo[armeabi-v7a]
+[RUN_GRADLEW] > Task :react-native-reanimated:configureCMakeRelWithDebInfo[x86]
+[RUN_GRADLEW] > Task :expo:lintVitalAnalyzeRelease
+[RUN_GRADLEW] > Task :react-native-reanimated:configureCMakeRelWithDebInfo[x86_64]
+[RUN_GRADLEW] > Task :react-native-reanimated:generateJsonModelRelease
+[RUN_GRADLEW] > Task :react-native-reanimated:prefabReleaseConfigurePackage
+[RUN_GRADLEW] > Task :react-native-reanimated:buildCMakeRelWithDebInfo[arm64-v8a][reanimated] FAILED
+[RUN_GRADLEW] C/C++: ninja: error: '/private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/node_modules/react-native-worklets/android/build/intermediates/cmake/release/obj/arm64-v8a/libworklets.so', needed by '../../../../build/intermediates/cxx/RelWithDebInfo/6s402h70/obj/arm64-v8a/libreanimated.so', missing and no known rule to make it
+[RUN_GRADLEW] > Task :react-native-gesture-handler:configureCMakeRelWithDebInfo[arm64-v8a]
+[RUN_GRADLEW] > Task :expo-dev-client:lintVitalAnalyzeRelease
+[RUN_GRADLEW] > Task :expo-dev-launcher:lintVitalAnalyzeRelease
+[RUN_GRADLEW] > Task :app:configureCMakeRelWithDebInfo[arm64-v8a]
+[RUN_GRADLEW] > Task :expo-modules-core:lintVitalAnalyzeRelease
+[RUN_GRADLEW] [Incubating] Problems report is available at: file:///private/var/folders/g5/11_qgkx552v7vb62gncm95h00000gn/T/eas-build-local-nodejs/d23856c7-a8b4-4455-9fb0-b1724f5e370a/build/android/build/reports/problems/problems-report.html
+[RUN_GRADLEW] Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+[RUN_GRADLEW] You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+[RUN_GRADLEW] For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+[RUN_GRADLEW] 747 actionable tasks: 442 executed, 305 up-to-date
+Error: Gradle build failed with unknown error. See logs for the "Run gradlew" phase for more information.
+    at resolveBuildPhaseErrorAsync (/Users/dorudia/.npm/_npx/51b74c4db9e60cb6/node_modules/@expo/build-tools/dist/buildErrors/detectError.js:69:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BuildContext.handleBuildPhaseErrorAsync (/Users/dorudia/.npm/_npx/51b74c4db9e60cb6/node_modules/@expo/build-tools/dist/context.js:192:28)
+    at async BuildContext.runBuildPhase (/Users/dorudia/.npm/_npx/51b74c4db9e60cb6/node_modules/@expo/build-tools/dist/context.js:135:35)
+    at async buildAsync (/Users/dorudia/.npm/_npx/51b74c4db9e60cb6/node_modules/@expo/build-tools/dist/builders/android.js:183:5)
+    at async runBuilderWithHooksAsync (/Users/dorudia/.npm/_npx/51b74c4db9e60cb6/node_modules/@expo/build-tools/dist/builders/common.js:12:13)
+    at async Object.androidBuilder (/Users/dorudia/.npm/_npx/51b74c4db9e60cb6/node_modules/@expo/build-tools/dist/builders/android.js:59:16)
+    at async buildAndroidAsync (/Users/dorudia/.npm/_npx/51b74c4db9e60cb6/node_modules/eas-cli-local-build-plugin/dist/android.js:44:12)
+    at async buildAsync (/Users/dorudia/.npm/_npx/51b74c4db9e60cb6/node_modules/eas-cli-local-build-plugin/dist/build.js:55:29)
+    at async main (/Users/dorudia/.npm/_npx/51b74c4db9e60cb6/node_modules/eas-cli-local-build-plugin/dist/main.js:16:9)
+npx -y eas-cli-local-build-plugin@1.0.243 eyJqb2IiOnsidHlwZSI6ImdlbmVyaWMiLCJwbGF0Zm9ybSI6ImFuZHJvaWQiLCJwcm9qZWN0Um9vdERpcmVjdG9yeSI6Ii4iLCJwcm9qZWN0QXJjaGl2ZSI6eyJ0eXBlIjoiUEFUSCIsInBhdGgiOiIvdmFyL2ZvbGRlcnMvZzUvMTFfcWdreDU1MnY3dmI2MmduY205NWgwMDAwMGduL1QvZWFzLWNsaS1ub2RlanMvYTRiODIwOWMtMmQ2Ny00MGJhLTg5YjctM2U3ZTkzYTMyZWFkLnRhci5neiJ9LCJidWlsZGVyRW52aXJvbm1lbnQiOnsiZW52Ijp7IkFORFJPSURfSE9NRSI6Ii9Vc2Vycy9kb3J1ZGlhL0xpYnJhcnkvQW5kcm9pZC9zZGsiLCJOT0RFX0VOViI6InByb2R1Y3Rpb24ifX0sImNhY2hlIjp7ImRpc2FibGVkIjpmYWxzZSwicGF0aHMiOltdLCJjbGVhciI6ZmFsc2V9LCJzZWNyZXRzIjp7ImJ1aWxkQ3JlZGVudGlhbHMiOnsia2V5c3RvcmUiOnsiZGF0YUJhc2U2NCI6Ii91Mys3UUFBQUFJQUFBQUJBQUFBQVFBZ1l6SXpaREV6WW1NMk4ySXpNVGcxT1dKbE16YzFPR0l5WkRCaE1ESXhPREVBQUFHWi9tdE1wQUFBQlFJd2dnVCtNQTRHQ2lzR0FRUUJLZ0lSQVFFRkFBU0NCT3BGS2MwZjFJMGR1SlRuczduZUdEMmduYjdRbFhRdVpPclJ3bGVMV2ZLbzlZSGo3dzVScEFXd3ZUM3lZRldOUUpha012RUJvVDFiL242NG5teWFhaXpQQTl4Z2prdHFuenFMMFVRTU5keHRrcTJaai9uTkx3cnM4bDdSYUpSTzJLWDRjRlR3VWt4VGRGaGZOZnBBRmtPWVFjRlBhbGJlYmJ5MW5KZDduVHZUK0VGQ3lrcVJLY1FHNkdUeGVSRUUwdjQxNGl4cW5kUHpjS0VXQWpYeG0yellYK1ZmOS9TeVFpTGRtNjVuZEpsU2h1MnRXMWJXWlhTYmZJdHI0emlIVXd5dFl6dDdVbUxuVVlnajgvUklPa3J4eUwzN0FVd0JSZi9uUitzRDdnZ3QvQlBTWUt6Q0hGcUt5TGZzTkhoWHFTeW5YYUIxQ0YrQzh3TGVKUGNRRnRjb3daandYYm9OQ0VQRWtNMFlYVFZrZERvUmVUYzBoK1RST3lIY09JUjg2VWFuNWRjYTVaYnJsVEdpdVBEdUxlYTZKMzB5Nnd5RG84NGVCcUpzTFF6VlFmZkxHK0hTMk92SGhRbEJkWitIWlBUd2NOMTJKMmV5NjJkaThRSDVWWlA3TFQxTlpMMDkvay9Ld2ZQVE1rWEVDVkNDaHI2bytCNlhrOHVmbUc5c0QxZUpMaENHMEpIclZHR1MxZ2xLUHlJV0dBOHlNOVpWcjZJV09HVVFReFMxT25Oc0hDSGlzaGJNRW1yS0xTakVlaktoUUgxWU13bFlsNExYZHF1U1R3S1lSY1JNSlZpMzZrZ1NwZUhVR0wzbytnSUwrVDk2Y2s1V3o4ckdVRHpMTng1QVNCUldOdnNqWGJmSjd3ZlFjQWFkOVAwRU0yamN4d1VYTjVnRURYa1llNGRWUEovMCtldlNJTUVEQ3ZlSmhlNEpuNk5rM2xQWFBweEtVVi93cnJkSGpRb2lSc1VIUXN6ZEt1VEVIbXlDQlNpTTdZNTNibStGZitJcFY4TVI2YXVORlF6cUhZTnhSVDdoRTdKVXNwTHZMbU55SGRZRU4rY1M4U3RUNlZrOTJtcGNTSDVwSUpiU2VSd1MvS2lQL0J6OXRQQmN0OWZYTnljUHZiSUk4bTdFRjBLL1kxd0E5QlVtWnlualBUdHVucXRNVFJGQ1RYMzlHU3J3V2VWNEVJT3JKUDQzWWJIcmlkWVIzSXE0TURZcmVqbmczTStIWmFYWUxRQjhPU29HelI3cjNTZ1kzdDVGWk50UDgraWd5TXV0NWRuRlppWUlWVHRVSGNrRkI4amo1T0RKT0lidHMrb1J3M2dUSW0xSEo3cndQYnFTNm5nUEVMSENCYm15MDRuU2dxaWVYcDYzYnd4SW5ETzU4ZG5HdlRKY0JDSlVyR095K1NQOE0zUSs2d3h6RGNPdDRvSzNFNlFzSzRHZ2VJVkMvODRlSm9iMHNrSkJvek8rSG5MWDFFaFQ4ZHV4K3FCc1FTN3ZkSEdMMW1qSm9MYXMvdVB0dDNXZFpGRGM0bU42N0RyZUtYcVpkTURTekdGSE1xYnZleFFEVjZlNnJSZU5qMmRSL01BYlhMM3Boemsxc3c5aEE1VmFyTmF0L3p4VHhtakNOaHowblFDZURaNm9sWGVTcWYwbFN1NXc2U1ZQMlY5REJPaTVaa1JRN2JNQmd1N3lFS05DM0Y2Nit2aHNGYnozZ3I3MExlVEtMM2ovWnRPMk4vSTRhdEc4aVB4dmJqaGxTc3IyZ053Rk1jVjh1SEVJWnQ1eURCdWR1L3lMNGxnTmxjRUNmMkRKVkVTbnJJRjgrVkFNWDMwckE0WExuT2xHZHNnTXRDYUdEVmJrckxiMzhEZ2ZKZ2xZSWZHQ2lwY0RndWpIQ0NNUitjRGEvNU9UZG12R2xiQklzZGpCZTdMck9vam8xVlBCQXZtNjE3YmNPRFFqVG1INytFWHR4OTRtbnpobWQ1cjEwUXI1TTdEMGEwNW1JWTRRNXAwcDlGZ0ttKzJlMm9aOEliR3R0bnZyNjczMEczYzV3ZVZTWTZSMHBYMVhBak4vOFErdkxla1hCQzJzd0xtYXJpV1B2eGRqVmRtMVdHUWVkSk5kRTNSc2l5S1VjV3JOMXEyZzFibXYwdUEvR3IwOHk3TVBBZjB4clV1ZGowT21pNWdQZmppNlpTcGxhSWhLRFZWVlB3VGpXUWZqZVhwZmVWb09vclBvSk5HK3VRVDdBQUFBQVFBRldDNDFNRGtBQUFNdE1JSURLVENDQWhHZ0F3SUJBZ0lFWEpzNit6QU5CZ2txaGtpRzl3MEJBUXNGQURCRU1Rc3dDUVlEVlFRR0V3SlZVekVKTUFjR0ExVUVDQk1BTVFrd0J3WURWUVFIRXdBeENUQUhCZ05WQkFvVEFERUpNQWNHQTFVRUN4TUFNUWt3QndZRFZRUURFd0F3SUJjTk1qVXhNREU1TWpFME1UQTRXaGdQTWpBMU16QXpNRFl5TVRReE1EaGFNRVF4Q3pBSkJnTlZCQVlUQWxWVE1Ra3dCd1lEVlFRSUV3QXhDVEFIQmdOVkJBY1RBREVKTUFjR0ExVUVDaE1BTVFrd0J3WURWUVFMRXdBeENUQUhCZ05WQkFNVEFEQ0NBU0l3RFFZSktvWklodmNOQVFFQkJRQURnZ0VQQURDQ0FRb0NnZ0VCQUlybFlDRVI2ZjdZYkY0cGVsR3hid2RFcFRzQXh3cWk5SExkNWkxd3AzdC9pRHJQbEhtUjVkMlFZOWNtQmhDWmhRTC80bFYyWkprM0lYNjQrMnZhRWpPbnEvVDJUdllPQ2dXYnlkbTNpQ2ZRR1pBU1E1cEkyZ29odWdWTmd4TWxJYUpkZVA4c3ZMMFhiT1g0NW5uMkFYbjVRQkJXaVhFdHJ0TWdKbjE1L21BcXg5aElvaUJSWmZVOXdXYmJKbjRocnVRRU5KaHpNSUFQaTFnUzdwMFZlWmFvQ2cwVFFqZW01b282RkpNR0poTnZkSUw4aHd2OWdwMnpLTmtCZHBMc3VrUVI1KzFnb0xDVndicnFnOUdBNmtESXhvRDZUV0VkVGVIOE1oSEsvaWNDMUVZRlJuaFRKZW5IUThyd3llTDM3b2lYaUhkWWlUb0FqS05Ybm1OTkFZY0NBd0VBQWFNaE1COHdIUVlEVlIwT0JCWUVGRUsvSXdKU0UxSVM3N2t2NXRKdVJOTWEvM3NHTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFBQTRSbUlxUEpqNjQvL1NxQ3o3dzRGbkJ4YTVYdGV3N2QxMmJnYlh3SWhnVnRSeGorSmg5a3pyYW80djh2Y2RFNXlXWUtxMk1NR0ozZmJNOXViaERsOWg0dFZrcG5VZ3lJM3VWeE1JQ1hFamxjejFCbWdDVjJYR3RBTmRvSWFYaHFHUHNKRHc3QWdQcE91MkU0ZFJSQS9LWHFvSE9yTUxsTmRBSjNEeWtEVitOTHBncjg1QjI5N3Mvb3MrMTRGM2dWbGpyZDdyQWJpeHJpZHFGTUR1cm9EUmpzZzM3MXprSit1a0dGOWdYc3VHc2dqci9ZZTZDZHBpVm94ZytIWmNweWFKOXprVk5IZUZmT0FiZ05PMVR2ZVROL2QxTGxXNlBQb01rK0o2QnVwOVoyZDl6c211M1RSTGVEN3QyUStHU1NIRHFQVmxnR2FmY092QmcxQTNvR1NPbUNjM1ZLYytyNG5ZOGZWL0FtRDJOV3VUQms9Iiwia2V5c3RvcmVQYXNzd29yZCI6IjYxNWViZDBlNTc3YmQ3MGMyMGUzZmMzNjhlMmY4NDFlIiwia2V5QWxpYXMiOiJjMjNkMTNiYzY3YjMxODU5YmUzNzU4YjJkMGEwMjE4MSIsImtleVBhc3N3b3JkIjoiNGQ0ZjcwMDgzZjE3N2U3YmY5ZmRmOTEwMzA5Njc1MzgifX19LCJ1cGRhdGVzIjp7fSwiZ3JhZGxlQ29tbWFuZCI6IjphcHA6YnVuZGxlUmVsZWFzZSIsInVzZXJuYW1lIjoiZGRpYSIsImV4cGVyaW1lbnRhbCI6e30sIm1vZGUiOiJidWlsZCIsInRyaWdnZXJlZEJ5IjoiRUFTX0NMSSIsImFwcElkIjoiYmJmMmVkZWMtZDIyMC00ZTQ2LThhMGUtZTg1MDQzMGY2OTI4IiwiaW5pdGlhdGluZ1VzZXJJZCI6IjAzYjU4MmE2LWUyYWEtNGUxNS1iZDRhLWRjYTBlNjAyOGRmZiJ9LCJtZXRhZGF0YSI6eyJ0cmFja2luZ0NvbnRleHQiOnsidHJhY2tpbmdfaWQiOiI5MjI0ZjA3Mi0xNzNiLTRmOTUtOGU3My1kMzIzYzMyYWE2ZTUiLCJwbGF0Zm9ybSI6ImFuZHJvaWQiLCJzZGtfdmVyc2lvbiI6IjU0LjAuMCIsImFjY291bnRfaWQiOiIyNDdmYmVjMy1iZWZhLTRiNGItOWEwNi0yNDY5NTU2YWQxNDkiLCJwcm9qZWN0X2lkIjoiYmJmMmVkZWMtZDIyMC00ZTQ2LThhMGUtZTg1MDQzMGY2OTI4IiwicHJvamVjdF90eXBlIjoiZ2VuZXJpYyIsImRldl9jbGllbnQiOmZhbHNlLCJkZXZfY2xpZW50X3ZlcnNpb24iOiI2LjAuMTYiLCJub193YWl0IjpmYWxzZSwicnVuX2Zyb21fY2kiOmZhbHNlLCJsb2NhbCI6dHJ1ZX0sImFwcFZlcnNpb24iOiIxLjAuMCIsImFwcEJ1aWxkVmVyc2lvbiI6IjEiLCJjbGlWZXJzaW9uIjoiMTYuMjUuMCIsIndvcmtmbG93IjoiZ2VuZXJpYyIsImNyZWRlbnRpYWxzU291cmNlIjoicmVtb3RlIiwic2RrVmVyc2lvbiI6IjU0LjAuMCIsImZpbmdlcnByaW50SGFzaCI6IjkxZDQ2NTY3MGRmNzlkNTdhNWMxZDEzOTljYWU5YjM1Y2ZiNzc2ZTAiLCJyZWFjdE5hdGl2ZVZlcnNpb24iOiIwLjgxLjUiLCJkaXN0cmlidXRpb24iOiJzdG9yZSIsImFwcE5hbWUiOiJNeSBsaXN0IGFwcCIsImFwcElkZW50aWZpZXIiOiJjb20uZGRpYS5saXN0c19hcHAiLCJidWlsZFByb2ZpbGUiOiJwcm9kdWN0aW9uIiwiZ2l0Q29tbWl0SGFzaCI6ImI4NzcxOWZjYmM3NGQ0MzE3YjViNjJmNmI5NGIwMzk3YmI1YTg1NWUiLCJnaXRDb21taXRNZXNzYWdlIjoiUmVzb2x2ZSBtZXJnZSBjb25mbGljdHMgYmV0d2VlbiBwdXNoLW5vdGlmaWNhdGlvbi1maXggYW5kIG1haW4iLCJpc0dpdFdvcmtpbmdUcmVlRGlydHkiOnRydWUsInVzZXJuYW1lIjoiZGRpYSIsInJ1bldpdGhOb1dhaXRGbGFnIjpmYWxzZSwicnVuRnJvbUNJIjpmYWxzZSwiZGV2ZWxvcG1lbnRDbGllbnQiOmZhbHNlLCJyZXF1aXJlZFBhY2thZ2VNYW5hZ2VyIjoibnBtIiwic2ltdWxhdG9yIjpmYWxzZX19 exited with non-zero code: 1

@@ -47,7 +47,7 @@ const NotificationList = () => {
     }, 2300);
 
     return () => clearTimeout(timer); // curățare la demontare
-  }, [notifications]);
+  }, []);
 
   useEffect(() => {
     return () => {

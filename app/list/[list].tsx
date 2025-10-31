@@ -13,13 +13,16 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import {
   ActivityIndicator,
   Alert,
+  BackHandler,
   Pressable,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
+import { useUser } from "@clerk/clerk-expo";
 
 export default function Index() {
   // const [todos, setTodos] = useState<Todos>([]);
@@ -30,6 +33,30 @@ export default function Index() {
   const { bgColor } = useTodos();
   const [isLoading, setIsLoading] = useState(false);
   const { list } = useLocalSearchParams<{ list: string }>();
+  const { isLoaded, isSignedIn, user } = useUser();
+
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) {
+      router.replace("/(auth)/sign-in"); // redirect la login
+    }
+  }, [isLoaded, isSignedIn]);
+
+  useEffect(() => {
+    const backAction = () => {
+      if (!isSignedIn) {
+        router.replace("/(auth)/sign-in");
+        return true; // blochează back
+      }
+      return false; // lasă back normal
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, [isSignedIn]);
 
   // const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
   const capitalizeWords = (str: string) =>
@@ -123,9 +150,13 @@ export default function Index() {
   if (isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" color={"#555"} />
+        <ActivityIndicator size="large" color={"#333"} />
       </View>
     );
+  }
+
+  if (!isLoaded || !isSignedIn) {
+    return null; // sau un ActivityIndicator
   }
 
   return (
@@ -140,21 +171,21 @@ export default function Index() {
             color: "#555",
           }}
         >
-          Add new Todo
+          Add new Item
         </Text>
         <View style={styles.inputContainer}>
           <TextInput
             value={todo}
             onChangeText={onInputChange}
             style={styles.input}
-            placeholder="add todo"
+            placeholder="add item"
             returnKeyType="done"
             onSubmitEditing={submitHandler}
             // multiline={true}
           />
-          <Pressable style={styles.button} onPress={submitHandler}>
+          <TouchableOpacity style={styles.button} onPress={submitHandler}>
             <Text style={styles.buttonText}>add</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
         <ScrollView
           showsVerticalScrollIndicator={false}

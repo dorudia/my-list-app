@@ -12,12 +12,8 @@ export const SignOutButton = () => {
   const handleSignOut = async () => {
     try {
       await signOut();
-      // Redirect to your desired page
-      // Linking.openURL(Linking.createURL("/"));
-      router.replace("/(auth)/sign-in");
+      router.replace("/"); // trimite înapoi la index
     } catch (err) {
-      // See https://clerk.com/docs/custom-flows/error-handling
-      // for more info on error handling
       console.error(JSON.stringify(err, null, 2));
     }
   };

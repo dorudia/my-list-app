@@ -12,15 +12,21 @@ import { LinearGradient } from "expo-linear-gradient";
 const clerkKey = Constants.expoConfig?.extra?.clerkPublishableKey;
 
 export default function RootLayout() {
-  const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
+  const publishableKey =
+    process.env.NODE_ENV === "production"
+      ? process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY // folosește cheia din eas.json
+      : process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
+  console.log("environment key in use:", { publishableKey });
 
   useEffect(() => {
     const testServer = async () => {
       try {
-        // const res = await fetch("http://localhost:3000/test");    // din emulator
-        const res = await fetch("http://192.168.0.100:3000/test"); // din telefon
-        const data = await res.json();
-        console.log("✅ Răspuns server:", data);
+        // // const res = await fetch("http://localhost:3000/test");    // din emulator development
+        // const res = await fetch("http://192.168.0.100:3000/test"); // din telefon development
+        const res = await fetch("https://my-list-app-server.onrender.com"); // production
+        const text = await res.text();
+        console.log("Răspuns server:", text);
       } catch (error) {
         console.log("❌ Eroare la conectarea cu serverul:", error);
       }

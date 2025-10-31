@@ -1,24 +1,29 @@
 {
   "cli": {
-    "version": ">= 16.24.0",
-    "appVersionSource": "remote"
+    "version": ">= 3.18.0"
   },
   "build": {
     "development": {
-      "developmentClient": true,
-      "distribution": "internal"
-    },
-    "preview": {
-      "distribution": "internal"
+      "android": {
+        "gradleCommand": ":app:assembleDebug"
+      },
+      "env": {
+        "ANDROID_HOME": "/Users/dorudia/Library/Android/sdk",
+        "NODE_ENV": "development"
+      }
     },
     "production": {
-      "autoIncrement": true,
       "android": {
+        "gradleCommand": ":app:assembleRelease",
         "buildType": "apk"
+      },
+      "env": {
+        "ANDROID_HOME": "/Users/dorudia/Library/Android/sdk",
+        "NODE_ENV": "production",
+        "FIREBASE_BASE": "https://react-native-expenses-co-44802-default-rtdb.europe-west1.firebasedatabase.app/liste",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_c3Rhci1vd2wtODguY2xlcmsuYWNjb3VudHMuZGV2JA",
+        "API_BASE_URL": "https://my-list-app-server.onrender.com"
       }
     }
-  },
-  "submit": {
-    "production": {}
   }
 }

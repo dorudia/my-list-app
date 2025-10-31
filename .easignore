@@ -1,0 +1,7 @@
+# Ignore node_modules (EAS local re-installs deps)
+node_modules/
+
+# But DO NOT ignore gradlew
+!android/gradlew
+!android/gradlew.bat
+!android/gradle/

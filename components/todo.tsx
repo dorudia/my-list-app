@@ -5,11 +5,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
-// type TodoItem = {
-//   id: string;
-//   text: string;
-//   completed: boolean;
-// };
+
 const TodoComponent = ({
   item,
   listName,
