@@ -156,8 +156,20 @@ const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
   // 🔹 Permisiuni și Expo Push Token
   useEffect(() => {
     const registerForPushNotifications = async () => {
-      if (Platform.OS === "web") return;
+      if (Platform.OS === "web") {
+        // Permisiuni pentru web folosind Notification API
+        if ("Notification" in window) {
+          const permission = await Notification.requestPermission();
+          if (permission !== "granted") {
+            console.log("❌ Permisiuni pentru notificări web refuzate");
+            return;
+          }
+          console.log("✅ Permisiuni pentru notificări web acceptate");
+        }
+        return;
+      }
 
+      // Codul existent pentru mobil
       const { status: existingStatus } =
         await Notifications.getPermissionsAsync();
       let finalStatus = existingStatus;
@@ -179,6 +191,32 @@ const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
 
     registerForPushNotifications();
   }, [isLoaded, user]);
+
+  // useEffect(() => {
+  //   const registerForPushNotifications = async () => {
+  //     if (Platform.OS === "web") return;
+
+  //     const { status: existingStatus } =
+  //       await Notifications.getPermissionsAsync();
+  //     let finalStatus = existingStatus;
+
+  //     if (existingStatus !== "granted") {
+  //       const { status } = await Notifications.requestPermissionsAsync();
+  //       finalStatus = status;
+  //     }
+
+  //     if (finalStatus !== "granted") {
+  //       console.log("❌ Permisiuni pentru notificări refuzate");
+  //       return;
+  //     }
+
+  //     const tokenData = await Notifications.getExpoPushTokenAsync();
+  //     setExpoPushToken(tokenData.data);
+  //     console.log("✅ Expo Push Token:", tokenData.data);
+  //   };
+
+  //   registerForPushNotifications();
+  // }, [isLoaded, user]);
 
   // 🔹 Listener pentru toate notificările primite (foreground & push) v2
   useEffect(() => {

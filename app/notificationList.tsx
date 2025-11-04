@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
     color: "#555",
   },
   notification: {
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

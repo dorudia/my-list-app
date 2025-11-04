@@ -199,6 +199,20 @@ const Todo = () => {
             )}
           </TouchableOpacity>
 
+          {Platform.OS === "web" && showIOS && (
+            <input
+              type="datetime-local"
+              value={date ? date.toISOString().slice(0, 16) : ""}
+              onChange={(e) => setDate(new Date(e.target.value))}
+              style={{
+                padding: 8,
+                borderRadius: 8,
+                border: "1px solid #ccc",
+                marginTop: 16,
+              }}
+            />
+          )}
+
           <TouchableOpacity
             style={styles.button}
             onPress={() => submitHandler(inputValue)}
