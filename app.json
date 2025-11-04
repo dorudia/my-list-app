@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "My list app",
+    "name": "My list",
     "slug": "crud_app",
     "icon": "./assets/icon.png",
     "version": "1.0.0",
