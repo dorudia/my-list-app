@@ -2,6 +2,7 @@ import { useSignUp } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
 import * as React from "react";
 import {
+  Alert,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
@@ -22,6 +23,32 @@ export default function SignUpScreen() {
 
   const onSignUpPress = async () => {
     if (!isLoaded) return;
+
+    if (password.length < 8) {
+      Alert.alert(
+        "Invalid password",
+        "Password must be at least 8 characters long."
+      );
+      return;
+    }
+
+    const hasLetter = [...password].some((ch) => {
+      return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(
+        ch
+      );
+    });
+
+    const hasNumber = [...password].some((ch) => {
+      return "0123456789".includes(ch);
+    });
+
+    if (!hasLetter || !hasNumber) {
+      Alert.alert(
+        "Invalid password",
+        "Password must include at least one letter and one number."
+      );
+      return;
+    }
 
     try {
       await signUp.create({ emailAddress, password });

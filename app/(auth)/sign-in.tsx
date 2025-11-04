@@ -49,7 +49,7 @@ export default function SignInScreen() {
     <KeyboardAvoidingView
       style={{ flex: 1, backgroundColor: "#fff" }}
       behavior={Platform.OS === "ios" ? "padding" : undefined}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 80} // ajustează după nevoie
+      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 80}
     >
       <ScrollView
         contentContainerStyle={{
@@ -67,7 +67,7 @@ export default function SignInScreen() {
             textAlign: "center",
           }}
         >
-          Autentificare
+          Sign In
         </Text>
 
         <TextInput
@@ -85,7 +85,7 @@ export default function SignInScreen() {
         />
 
         <TextInput
-          placeholder="Parolă"
+          placeholder="Password"
           secureTextEntry
           value={password}
           onChangeText={setPassword}
@@ -102,7 +102,7 @@ export default function SignInScreen() {
           <Text
             style={{ color: "#3a8e3d", textAlign: "center", marginBottom: 16 }}
           >
-            Ai uitat parola?
+            Forgot your password?
           </Text>
         </TouchableOpacity>
 
@@ -118,17 +118,17 @@ export default function SignInScreen() {
           <Text
             style={{ color: "#fff", fontWeight: "600", textAlign: "center" }}
           >
-            Continuă
+            Continue
           </Text>
         </TouchableOpacity>
 
         <View
           style={{ flexDirection: "row", justifyContent: "center", gap: 4 }}
         >
-          <Text>Nu ai cont?</Text>
+          <Text>Don't have an account?</Text>
           <Link href="/sign-up">
             <Text style={{ color: "#3a8e3d", fontWeight: "bold" }}>
-              Înregistrează-te
+              Sign up
             </Text>
           </Link>
         </View>

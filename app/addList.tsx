@@ -49,17 +49,21 @@ const AddList = () => {
   };
 
   const deleteListHandler = (listName: string) => {
-    Alert.alert("Delete List", "Are you sure you want to delete this list?", [
-      {
-        text: "Cancel",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel",
-      },
-      {
-        text: "OK",
-        onPress: () => deleteList(listName),
-      },
-    ]);
+    Alert.alert(
+      "Delete List",
+      `Are you sure you want to delete the "${listName.toUpperCase()}" list?`,
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: () => deleteList(listName),
+        },
+      ]
+    );
   };
 
   const submitHandler = async () => {
