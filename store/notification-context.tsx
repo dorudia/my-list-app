@@ -1,52 +1,81 @@
-import { useTodos } from "@/store/todo-context";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+} from "react";
 import { useUser } from "@clerk/clerk-expo";
+import { useTodos } from "@/store/todo-context";
 import * as Notifications from "expo-notifications";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { Platform } from "react-native";
+import { Alert, Platform } from "react-native";
+import { useAuth } from "@clerk/clerk-react";
 
-type NotificationItem = {
-  id: string;
+// const API_URL = process.env.REACT_APP_API_URL || "http://192.168.0.216:3000";
+const API_URL = "https://my-list-app-server.onrender.com";
+
+export type NotificationItem = {
+  _id: string;
+  userId: string;
+  todoId?: string;
+  listName?: string;
   title: string;
-  body: string;
+  body?: string;
   read: boolean;
   delivered: boolean;
+  date?: string;
+  expoPushToken?: string;
+};
+
+type PendingNotification = {
   todoId: string;
   listName: string;
-  expoPushToken?: string | null;
-  date?: Date;
-  notificationId?: string;
+  updates: Partial<NotificationItem>;
 };
 
 type NotificationContextType = {
   notifications: NotificationItem[];
-  expoPushToken: string | null;
-  markAllAsRead: () => void;
-  fetchNotifications: () => void;
-  updateNotification: (id: string, data: Partial<NotificationItem>) => void;
-  removeNotification: (id: string) => void;
-  clearNotifications: () => void;
-  createNotification: (data: Partial<NotificationItem>) => void;
+  fetchNotifications: (userId?: string) => Promise<void>;
+  createNotification: (
+    data: Partial<NotificationItem>,
+    userId?: string
+  ) => Promise<void>;
+  updateNotification: (
+    id: string,
+    data: Partial<NotificationItem>,
+    userId?: string
+  ) => Promise<void>;
+  deleteNotification: (userId: string, id: string) => Promise<void>;
+  deleteAllNotifications: (userId: string) => Promise<void>;
+  markAllAsRead: (userId: string) => Promise<void>;
 };
 
-export const NotificationContext = createContext<NotificationContextType>({
+const NotificationContext = createContext<NotificationContextType>({
   notifications: [],
-  expoPushToken: null,
-  markAllAsRead: () => {},
-  fetchNotifications: () => {},
-  updateNotification: () => {},
-  removeNotification: () => {},
-  clearNotifications: () => {},
-  createNotification: () => {},
+  fetchNotifications: async () => {},
+  createNotification: async () => {},
+  updateNotification: async () => {},
+  deleteNotification: async () => {},
+  deleteAllNotifications: async () => {},
+  markAllAsRead: async () => {},
 });
 
-const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
+export const NotificationProvider = ({
+  token,
+  children,
+}: {
+  token: () => Promise<string | null>;
+  children: React.ReactNode;
+}) => {
   const { user, isLoaded } = useUser();
-  const { updateTodo, fetchTodos } = useTodos();
+  // const { getToken } = useAuth();
+  const { updateTodo } = useTodos();
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [expoPushToken, setExpoPushToken] = useState<string | null>(null);
   const notificationsRef = useRef<NotificationItem[]>([]);
+  notificationsRef.current = notifications;
   const [pendingNotifications, setPendingNotifications] = useState<
-    { todoId: string; listName: string; updates: Partial<NotificationItem> }[]
+    PendingNotification[]
   >([]);
   notificationsRef.current = notifications;
   const notificationListener = useRef<Notifications.EventSubscription | null>(
@@ -54,122 +83,141 @@ const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
   );
   const responseListener = useRef<Notifications.EventSubscription | null>(null);
 
-  const getUserUri = async () => {
-    if (!isLoaded || !user) return null;
-    return `https://react-native-expenses-co-44802-default-rtdb.europe-west1.firebasedatabase.app/liste/notifications-${user.id}`;
-  };
-
-  const fetchNotifications = async () => {
-    const userUri = await getUserUri();
-    if (!userUri) return;
+  // Fetch all notifications
+  const fetchNotifications = async (userId?: string) => {
+    if (!isLoaded || !user) return;
+    const id = userId || user.id;
+    const clerkToken = await token();
 
     try {
-      const res = await fetch(`${userUri}.json`);
-      const data = await res.json();
-      if (data) {
-        const loaded = Object.entries(data).map(([key, value]: any) => ({
-          ...value,
-          id: key,
-          date: new Date(value.date),
-        }));
-        setNotifications(loaded.reverse());
-      }
-    } catch (e) {
-      console.warn("❌ Eroare la fetchNotifications:", e);
-    }
-  };
-
-  const updateNotification = async (
-    id: string,
-    data: Partial<NotificationItem>
-  ) => {
-    const userUri = await getUserUri();
-    if (!userUri) return;
-    await fetch(`${userUri}/${id}.json`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...data, expoPushTokenKey: expoPushToken }),
-    });
-  };
-
-  const createNotification = async (data: Partial<NotificationItem>) => {
-    console.log("createNotification apelat");
-    const userUri = await getUserUri();
-    const id = Date.now().toString();
-    if (!userUri) return;
-    const res = await fetch(`${userUri}.json`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...data, expoPushTokenKey: expoPushToken }),
-    });
-    const dataRes = await res.json();
-    const notificationId = dataRes.name;
-
-    await updateNotification(notificationId, { notificationId });
-  };
-
-  const removeNotification = async (id: string) => {
-    const userUri = await getUserUri();
-    if (!userUri) return;
-
-    await fetch(`${userUri}/${id}.json`, { method: "DELETE" });
-    setNotifications((prev) => prev.filter((n) => n.id !== id));
-  };
-
-  const clearNotifications = async () => {
-    const userUri = await getUserUri();
-    if (!userUri) return;
-
-    await fetch(`${userUri}.json`, { method: "DELETE" });
-    setNotifications([]);
-  };
-
-  const markAllAsRead = async () => {
-    const userUri = await getUserUri();
-    if (!userUri) return;
-
-    for (const n of notifications) {
-      if (!n.read) {
-        await updateNotification(n.id, { read: true });
-      }
-    }
-
-    setNotifications(notifications.map((n) => ({ ...n, read: true })));
-  };
-
-  // când user-ul e gata, procesăm notificările rămase
-  useEffect(() => {
-    // când user-ul e gata, procesăm notificările rămase
-    if (isLoaded && pendingNotifications.length > 0) {
-      console.log("✅Pending notifications:", pendingNotifications);
-      pendingNotifications.forEach((notif) => {
-        updateTodo({
-          id: notif.todoId,
-          listName: notif.listName,
-          ...notif.updates,
-        });
+      const res = await fetch(`${API_URL}/notifications/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${clerkToken}`,
+        },
       });
-      setPendingNotifications([]);
+      const data: NotificationItem[] = await res.json();
+      setNotifications(data);
+    } catch (err) {
+      console.error("Error fetching notifications:", err);
     }
-  }, [isLoaded, user, pendingNotifications]);
+  };
+
+  // Create a notification
+  const createNotification = async (
+    data: Partial<NotificationItem>,
+    userId?: string
+  ) => {
+    if (!isLoaded || !user) return;
+    const id = userId || user.id;
+    const clerkToken = await token();
+    try {
+      await fetch(`${API_URL}/notifications/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${clerkToken}`,
+        },
+        body: JSON.stringify({ ...data, userId: id, expoPushToken }),
+      });
+      await fetchNotifications(id);
+    } catch (err) {
+      console.error("Error creating notification:", err);
+    }
+  };
+
+  // Update a notification
+  const updateNotification = async (
+    idNotif: string,
+    data: Partial<NotificationItem>,
+    userId?: string
+  ) => {
+    if (!isLoaded || !user) return;
+    const id = userId || user.id;
+    const clerkToken = await token();
+    try {
+      await fetch(`${API_URL}/notifications/${id}/${idNotif}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${clerkToken}`,
+        },
+        body: JSON.stringify(data),
+      });
+      await fetchNotifications(id);
+    } catch (err) {
+      console.error("Error updating notification:", err);
+    }
+  };
+
+  // Delete a single notification
+  const deleteNotification = async (userId: string, idNotif: string) => {
+    if (!isLoaded || !user) return;
+    const clerkToken = await token();
+    try {
+      await fetch(`${API_URL}/notifications/${userId}/${idNotif}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${clerkToken}`,
+        },
+      });
+      await fetchNotifications(userId);
+    } catch (err) {
+      console.error("Error deleting notification:", err);
+    }
+  };
+
+  // Delete all notifications
+  const deleteAllNotifications = async (userId: string) => {
+    if (!isLoaded || !user) return;
+    const clerkToken = await token();
+    try {
+      await fetch(`${API_URL}/notifications/${userId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${clerkToken}`,
+        },
+      });
+      setNotifications([]);
+    } catch (err) {
+      console.error("Error deleting all notifications:", err);
+    }
+  };
+
+  // Mark all notifications as read
+  const markAllAsRead = async (userId: string) => {
+    if (!user) return;
+
+    try {
+      // 1️⃣ actualizare instant UI
+      setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+
+      // 2️⃣ update async la server, nu blocăm UI-ul
+      const unread = notifications.filter((n) => !n.read);
+      for (const n of unread) {
+        updateNotification(n._id, { read: true }, userId).catch((err) => {
+          console.error("Error updating notification on server:", err);
+        });
+      }
+    } catch (err) {
+      console.error("Error marking notifications as read:", err);
+    }
+  };
 
   // 🔹 Permisiuni și Expo Push Token
   useEffect(() => {
     const registerForPushNotifications = async () => {
       if (Platform.OS === "web") {
-        // Permisiuni pentru web folosind Notification API
         if ("Notification" in window) {
           const permission = await Notification.requestPermission();
-          if (permission !== "granted") {
-            console.log("❌ Permisiuni pentru notificări web refuzate");
-            return;
-          }
-          console.log("✅ Permisiuni pentru notificări web acceptate");
+          if (permission !== "granted") return;
         }
         return;
       }
 
-      // Codul existent pentru mobil
       const { status: existingStatus } =
         await Notifications.getPermissionsAsync();
       let finalStatus = existingStatus;
@@ -179,63 +227,34 @@ const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
         finalStatus = status;
       }
 
-      if (finalStatus !== "granted") {
-        console.log("❌ Permisiuni pentru notificări refuzate");
-        return;
-      }
+      if (finalStatus !== "granted") return;
 
       const tokenData = await Notifications.getExpoPushTokenAsync();
       setExpoPushToken(tokenData.data);
-      console.log("✅ Expo Push Token:", tokenData.data);
+      // console.log("✅ Expo Push Token:", tokenData.data);
     };
 
-    registerForPushNotifications();
+    if (isLoaded && user) {
+      registerForPushNotifications();
+    }
   }, [isLoaded, user]);
 
-  // useEffect(() => {
-  //   const registerForPushNotifications = async () => {
-  //     if (Platform.OS === "web") return;
-
-  //     const { status: existingStatus } =
-  //       await Notifications.getPermissionsAsync();
-  //     let finalStatus = existingStatus;
-
-  //     if (existingStatus !== "granted") {
-  //       const { status } = await Notifications.requestPermissionsAsync();
-  //       finalStatus = status;
-  //     }
-
-  //     if (finalStatus !== "granted") {
-  //       console.log("❌ Permisiuni pentru notificări refuzate");
-  //       return;
-  //     }
-
-  //     const tokenData = await Notifications.getExpoPushTokenAsync();
-  //     setExpoPushToken(tokenData.data);
-  //     console.log("✅ Expo Push Token:", tokenData.data);
-  //   };
-
-  //   registerForPushNotifications();
-  // }, [isLoaded, user]);
-
-  // 🔹 Listener pentru toate notificările primite (foreground & push) v2
   useEffect(() => {
     notificationListener.current =
       Notifications.addNotificationReceivedListener(async (notification) => {
-        console.log("🔔 Notificare primită:", notification);
+        console.log("🔔 Notificare primită");
         const data = notification.request.content.data as {
           todoId: string;
           listName: string;
           title: string;
-          completed: boolean;
         };
-        const todoId = data.todoId;
-        const listName = data.listName;
-        const title = data.title;
+        // console.log("✅ data:", { data });
+
+        const { todoId, listName, title } = data;
+        // console.log("Listener a primit data", { todoId, listName, title });
 
         if (!isLoaded || !user) {
-          console.log("❌ Nu putem procesa notificarea, user-ul nu este gata");
-          setPendingNotifications((prev) => [
+          setPendingNotifications((prev: PendingNotification[]) => [
             ...prev,
             {
               todoId,
@@ -243,19 +262,21 @@ const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
               updates: { title, reminder: false, reminderDate: null },
             },
           ]);
-          console.log("pendingNotifications added:", pendingNotifications);
           return;
         }
 
         try {
-          console.log("🎯 updateTodo apelat cu:", { todoId, listName, title });
+          // console.log("✅ Din listener:", todoId, listName);
 
           await updateTodo({
-            id: todoId,
+            _id: todoId, // ⚠ folosește _id conform BE
             listName,
             reminder: false,
             reminderDate: null,
           });
+
+          // ⚠ marchează notificarea ca delivered dacă vrei
+          await updateNotification(todoId, { delivered: true });
 
           await fetchNotifications();
         } catch (err) {
@@ -265,58 +286,69 @@ const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
 
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log("👉 User a interacționat cu notificarea:", response);
+        // console.log("👉 User a interacționat cu notificarea:", response);
       });
 
     return () => {
-      // ✅ în versiunile noi trebuie apelată metoda `.remove()`
       notificationListener.current?.remove();
       responseListener.current?.remove();
     };
-  }, []);
-  // 🔹 Verifică notificările ratate la pornire
-  useEffect(() => {
-    const checkMissedNotifications = async () => {
-      const now = new Date();
-      const missed = notificationsRef.current.filter(
-        (n) => !n.delivered && n.date && n.date < now
-      );
+  }, [isLoaded, user]);
 
+  // Check missed notifications
+  // Check missed notifications simplificat
+  useEffect(() => {
+    if (!isLoaded || !user) return;
+
+    const checkMissedNotifications = async () => {
+      // 1️⃣ Fetch notificările actuale
+      await fetchNotifications(user.id);
+
+      // 2️⃣ Luăm doar notificările care nu sunt livrate și au trecut
+      const now = new Date();
+      const missed = notificationsRef.current.filter((n) => {
+        if (!n.date || n.delivered) return false;
+        return new Date(n.date) < now;
+      });
+
+      // console.log("🔔 Missed notifications:", missed);
+
+      // 3️⃣ Procesăm fiecare notificare pe rând
       for (const n of missed) {
+        if (!n.listName || !n.todoId) {
+          console.warn("⚠️ Missing listName or todoId for notification", n._id);
+          continue;
+        }
+
+        // Dezactivăm reminder-ul în TODO
         await updateTodo({
-          id: n.todoId,
+          _id: n.todoId,
           listName: n.listName,
-          text: n.title,
           reminder: false,
           reminderDate: null,
         });
-        await updateNotification(n.id, { delivered: true });
+
+        // Marcam notificarea ca livrată
+        await updateNotification(n._id, { delivered: true });
       }
 
-      fetchNotifications();
+      // 4️⃣ Re-fetch notificările după update
+      await fetchNotifications(user.id);
     };
 
     checkMissedNotifications();
   }, [isLoaded, user]);
 
-  useEffect(() => {
-    const fetchNotificationsOnLoad = async () => {
-      await fetchNotifications();
-    };
-    fetchNotificationsOnLoad();
-  }, [notifications]);
-
   return (
     <NotificationContext.Provider
       value={{
         notifications,
-        expoPushToken,
-        markAllAsRead,
         fetchNotifications,
-        updateNotification,
-        removeNotification,
-        clearNotifications,
         createNotification,
+        updateNotification,
+        deleteNotification,
+        deleteAllNotifications,
+        markAllAsRead,
       }}
     >
       {children}
@@ -325,4 +357,3 @@ const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const useNotifications = () => useContext(NotificationContext);
-export default NotificationProvider;

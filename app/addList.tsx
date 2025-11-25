@@ -1,13 +1,11 @@
 import NotificatinoButton from "@/components/NotificatinoButton";
 import UserContainer from "@/components/UserContainer";
-import { useTodos } from "@/store/todo-context";
+import { useTodos, UserList } from "@/store/todo-context";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation, useRouter } from "expo-router";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
   Alert,
-  Platform,
-  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -20,48 +18,34 @@ import { useUser } from "@clerk/clerk-expo";
 const AddList = () => {
   const [input, setInput] = useState<string>("");
   const router = useRouter();
-  const { getUserLists, addList, userLists, deleteList, updateTodo } =
-    useTodos();
   const navigation = useNavigation();
-  const { bgColor } = useTodos();
+  const { getUserLists, addList, userLists, deleteList, bgColor } = useTodos();
   const { isLoaded, isSignedIn } = useUser();
+  const user = useUser().user;
 
   useEffect(() => {
     if (isLoaded && !isSignedIn) {
-      router.replace("/(auth)/sign-in"); // redirect la login
+      router.replace("/(auth)/sign-in");
     }
   }, [isLoaded, isSignedIn]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => <NotificatinoButton />,
-      headerStyle: {
-        backgroundColor: bgColor,
-      },
-      contentStyle: {
-        backgroundColor: bgColor,
-      },
+      headerStyle: { backgroundColor: bgColor },
+      contentStyle: { backgroundColor: bgColor },
     });
   }, [navigation, bgColor]);
 
-  const onInputChange = (text: string) => {
-    setInput(text);
-  };
+  const onInputChange = (text: string) => setInput(text);
 
-  const deleteListHandler = (listName: string) => {
+  const deleteListHandler = (id: string, name: string) => {
     Alert.alert(
       "Delete List",
-      `Are you sure you want to delete the "${listName.toUpperCase()}" list?`,
+      `Are you sure you want to delete the "${name.toUpperCase()}" list?`,
       [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel",
-        },
-        {
-          text: "OK",
-          onPress: () => deleteList(listName),
-        },
+        { text: "Cancel", style: "cancel" },
+        { text: "OK", onPress: () => deleteList(id) },
       ]
     );
   };
@@ -72,30 +56,15 @@ const AddList = () => {
   };
 
   useEffect(() => {
-    async function getList() {
-      await getUserLists();
-    }
-    getList();
-  }, []);
+    if (isLoaded && user) getUserLists();
+  }, [isLoaded, user]);
 
-  if (!isLoaded || !isSignedIn) {
-    return null; // sau un ActivityIndicator
-  }
+  if (!isLoaded || !isSignedIn) return null;
 
   return (
-    // <SafeAreaView style={{ flex: 1 }}>
     <View style={styles.rootContainer}>
       <UserContainer />
-      <Text
-        style={{
-          fontSize: 18,
-          fontWeight: "bold",
-          alignSelf: "flex-start",
-          color: "#555",
-        }}
-      >
-        Add new List
-      </Text>
+      <Text style={styles.title}>Add new List</Text>
       <View style={styles.inputContainer}>
         <TextInput
           value={input}
@@ -106,37 +75,34 @@ const AddList = () => {
           onSubmitEditing={submitHandler}
           autoCorrect={false}
           autoCapitalize="none"
-          // multiline={true}
         />
         <TouchableOpacity style={styles.button} onPress={submitHandler}>
-          <Text style={styles.buttonText}>add</Text>
+          <Text style={styles.buttonText}>Add</Text>
         </TouchableOpacity>
       </View>
+
       <ScrollView
         style={styles.listsWrapper}
         contentContainerStyle={{ paddingBottom: 70 }}
         showsVerticalScrollIndicator={false}
       >
-        {userLists.map((list) => (
+        {[...userLists].reverse().map((list) => (
           <TouchableOpacity
-            onPress={() => {
-              router.push(`/list/${list}`);
-            }}
-            key={list}
+            key={list._id}
             style={styles.listContainer}
+            onPress={() => router.push(`/list/${list.name}`)}
           >
-            <Text style={styles.listText}>{list}</Text>
+            <Text style={styles.listText}>{list.name}</Text>
             <MaterialCommunityIcons
               name="delete-outline"
               size={24}
               color="red"
-              onPress={() => deleteListHandler(list)}
+              onPress={() => deleteListHandler(list._id, list.name)}
             />
           </TouchableOpacity>
         ))}
       </ScrollView>
     </View>
-    // </SafeAreaView>
   );
 };
 
@@ -147,11 +113,43 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     paddingTop: 8,
-    // backgroundColor: "#ffffff",
     paddingHorizontal: 16,
-    // marginTop: -50,
-    // width: Platform.OS === "web" ? "50%" : "100%",
-    // marginHorizontal: Platform.OS === "web" ? "auto" : undefined,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+    alignSelf: "flex-start",
+    color: "#555",
+    marginBottom: 8,
+  },
+  inputContainer: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 12,
+  },
+  input: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: "#aaaaaa",
+    padding: 8,
+    backgroundColor: "#ffffff90",
+    borderRadius: 4,
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: 40,
+    paddingHorizontal: 12,
+    marginLeft: 8,
+    borderRadius: 4,
+    backgroundColor: "#314797",
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "white",
+    textTransform: "uppercase",
   },
   listsWrapper: {
     width: "100%",
@@ -159,8 +157,6 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     width: "100%",
-    flex: 1,
-    // height: 40,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -170,55 +166,11 @@ const styles = StyleSheet.create({
     padding: 6,
     borderRadius: 12,
     backgroundColor: "#ffffff80",
-    // elevation: 4,
   },
   listText: {
     fontSize: 18,
     fontWeight: "bold",
-    fontFamily: "Inter_500Medium",
     color: "#555",
     textTransform: "capitalize",
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 16,
-    color: "#555",
-  },
-  inputContainer: {
-    width: "100%",
-    height: 50,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 12,
-  },
-  input: {
-    // width: "60%",
-    flex: 1,
-    // height: 40,
-    borderWidth: 1,
-    borderColor: "#aaaaaa",
-    padding: 8,
-    backgroundColor: "#ffffff90",
-    borderRadius: 4,
-  },
-  button: {
-    // width: "25%",
-    alignItems: "center",
-    justifyContent: "center",
-    height: 40,
-    paddingHorizontal: 12,
-    marginLeft: 8,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: "#314797",
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "white",
-    textTransform: "uppercase",
-    fontFamily: "Inter_500Medium",
   },
 });

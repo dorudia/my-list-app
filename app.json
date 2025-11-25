@@ -65,7 +65,8 @@
       },
       "eas": {
         "projectId": "bbf2edec-d220-4e46-8a0e-e850430f6928"
-      }
+      },
+      "EXPO_PUBLIC_API_URL": "http://192.168.0.216:3000"
     },
     "owner": "ddia"
   }

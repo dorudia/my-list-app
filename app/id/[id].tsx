@@ -25,10 +25,10 @@ const Todo = () => {
     id: string;
     listName: string;
   }>();
-  const todo = todos.find((todo) => todo.id === id);
+  const todo = todos.find((todo) => todo._id === id);
 
   const notification = notifications.find(
-    (notification) => notification.id === id
+    (notification) => notification._id === id
   );
   const [inputValue, setInputValue] = useState(todo?.text || "");
   const [isChecked, setIsChecked] = useState(todo?.completed || false);
@@ -105,14 +105,13 @@ const Todo = () => {
       return;
     }
     for (const todo of todos) {
-      if (todo.text === inputValue.trim() && todo.id !== id) {
+      if (todo.text === inputValue.trim() && todo._id !== id) {
         Alert.alert("Error", "Name already exists!", [
           { text: "ok", onPress: () => setInputValue(todo?.text || "") },
         ]);
         return;
       }
     }
-    console.log("submitHandler: date:", date);
 
     if (date && date < new Date()) {
       Alert.alert("Alert", "Notification cannot be in the past!", [
@@ -128,7 +127,7 @@ const Todo = () => {
       const reminder = date > new Date();
       const updatedDate = date > new Date() ? date : undefined;
       updateTodo({
-        id,
+        _id: id,
         listName,
         text,
         completed: isChecked,
@@ -141,11 +140,11 @@ const Todo = () => {
         todoId: id,
         body: text,
         read: false,
-        date: updatedDate,
+        date: updatedDate?.toDateString(),
         delivered: false,
       });
     } else {
-      updateTodo({ id, listName, text });
+      updateTodo({ _id: id, listName, text });
     }
 
     router.back();
