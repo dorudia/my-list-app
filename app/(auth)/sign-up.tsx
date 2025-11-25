@@ -54,8 +54,8 @@ export default function SignUpScreen() {
       await signUp.create({ emailAddress, password });
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
       setPendingVerification(true);
-    } catch (err) {
-      console.error(JSON.stringify(err, null, 2));
+    } catch (err: any) {
+      alert("Error signing up: " + JSON.stringify(err?.errors[0]?.longMessage));
     }
   };
 

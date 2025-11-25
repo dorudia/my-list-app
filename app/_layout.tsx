@@ -1,4 +1,4 @@
-import NotificationProvider from "@/store/notification-context";
+import { NotificationProvider } from "@/store/notification-context";
 import TodoProvider from "@/store/todo-context";
 import { ClerkProvider } from "@clerk/clerk-expo";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
@@ -17,7 +17,7 @@ export default function RootLayout() {
       ? process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY // folosește cheia din eas.json
       : process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
-  console.log("environment key in use:", { publishableKey });
+  // console.log("environment key in use:", { publishableKey });
 
   useEffect(() => {
     const testServer = async () => {
@@ -38,64 +38,64 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
         <TodoProvider>
-          <NotificationProvider>
-            <StatusBar barStyle="dark-content" />
-            <View
-              style={{
-                flex: 1,
-                width: Platform.OS === "web" ? "50%" : "100%",
-                marginHorizontal: Platform.OS === "web" ? "auto" : undefined,
-                padding: Platform.OS === "web" ? 40 : 0,
+          {/* <NotificationProvider> */}
+          <StatusBar barStyle="dark-content" />
+          <View
+            style={{
+              flex: 1,
+              width: Platform.OS === "web" ? "50%" : "100%",
+              marginHorizontal: Platform.OS === "web" ? "auto" : undefined,
+              padding: Platform.OS === "web" ? 40 : 0,
+            }}
+          >
+            <Stack
+              screenOptions={{
+                headerTitleAlign: "left",
+                headerTintColor: "#314797",
+                headerBackVisible: true,
+                headerBackTitle: "Back",
+                // headerStyle: { backgroundColor: "#ffdafd" },
+                headerShadowVisible: false,
+                // contentStyle: { backgroundColor: "#ffdafd" },
+                headerTitleStyle: {
+                  fontWeight: "bold",
+                  fontSize: 20,
+                },
+                animation: "slide_from_right",
               }}
             >
-              <Stack
-                screenOptions={{
-                  headerTitleAlign: "left",
-                  headerTintColor: "#314797",
-                  headerBackVisible: true,
-                  headerBackTitle: "Back",
-                  // headerStyle: { backgroundColor: "#ffdafd" },
-                  headerShadowVisible: false,
-                  // contentStyle: { backgroundColor: "#ffdafd" },
-                  headerTitleStyle: {
-                    fontWeight: "bold",
-                    fontSize: 20,
-                  },
-                  animation: "slide_from_right",
+              <Stack.Screen
+                name="index"
+                options={{
+                  headerShown: false,
                 }}
-              >
-                <Stack.Screen
-                  name="index"
-                  options={{
-                    headerShown: false,
-                  }}
-                />
-                <Stack.Screen
-                  name="addList"
-                  options={{
-                    title: "Select List",
-                  }}
-                />
-                <Stack.Screen
-                  name="list/[list]"
-                  options={{ title: "Add Todo" }}
-                />
-                <Stack.Screen
-                  name="id/[id]"
-                  options={{
-                    // headerShown: false,
-                    title: "Edit Todo",
-                    headerTitleAlign: "center",
-                  }}
-                />
-                <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-                <Stack.Screen
-                  name="notificationList"
-                  options={{ title: "Notifications" }}
-                />
-              </Stack>
-            </View>
-          </NotificationProvider>
+              />
+              <Stack.Screen
+                name="addList"
+                options={{
+                  title: "Select List",
+                }}
+              />
+              <Stack.Screen
+                name="list/[list]"
+                options={{ title: "Add Todo" }}
+              />
+              <Stack.Screen
+                name="id/[id]"
+                options={{
+                  // headerShown: false,
+                  title: "Edit Todo",
+                  headerTitleAlign: "center",
+                }}
+              />
+              <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+              <Stack.Screen
+                name="notificationList"
+                options={{ title: "Notifications" }}
+              />
+            </Stack>
+          </View>
+          {/* </NotificationProvider> */}
         </TodoProvider>
       </ClerkProvider>
     </SafeAreaProvider>

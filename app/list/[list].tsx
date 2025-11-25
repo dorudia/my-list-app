@@ -1,20 +1,8 @@
-import NotificatinoButton from "@/components/NotificatinoButton";
-import TodoComponent from "@/components/todo";
-import UserContainer from "@/components/UserContainer";
-import { useTodos } from "@/store/todo-context";
-// import { Inter_500Medium, useFonts } from "@expo-google-fonts/inter";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
-  useFocusEffect,
-  useLocalSearchParams,
-  useNavigation,
-  useRouter,
-} from "expo-router";
-import { useEffect, useLayoutEffect, useState } from "react";
-import {
-  ActivityIndicator,
   Alert,
+  ActivityIndicator,
   BackHandler,
-  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -22,43 +10,47 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useTodos } from "@/store/todo-context";
 import { useUser } from "@clerk/clerk-expo";
+import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
+import NotificatinoButton from "@/components/NotificatinoButton";
+import TodoComponent from "../../components/todo";
+import UserContainer from "@/components/UserContainer";
 
 export default function Index() {
-  // const [todos, setTodos] = useState<Todos>([]);
-  const { todos, updateTodo, addTodo, fetchTodos, deleteTodos } = useTodos();
-  const [todo, setTodo] = useState("");
+  const { todos, addTodo, fetchTodos, deleteTodos, updateTodo } = useTodos();
+  const { isLoaded, isSignedIn, user } = useUser();
+  const { list } = useLocalSearchParams<{ list: string }>();
   const router = useRouter();
   const navigation = useNavigation();
-  const { bgColor } = useTodos();
+  const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { list } = useLocalSearchParams<{ list: string }>();
-  const { isLoaded, isSignedIn, user } = useUser();
+  const { bgColor } = useTodos();
 
+  // Redirect dacă nu ești logat
   useEffect(() => {
     if (isLoaded && !isSignedIn) {
-      router.replace("/(auth)/sign-in"); // redirect la login
+      router.replace("/(auth)/sign-in");
     }
   }, [isLoaded, isSignedIn]);
 
+  // Back button handling
   useEffect(() => {
     const backAction = () => {
       if (!isSignedIn) {
         router.replace("/(auth)/sign-in");
-        return true; // blochează back
+        return true;
       }
-      return false; // lasă back normal
+      return false;
     };
-
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
       backAction
     );
-
     return () => backHandler.remove();
   }, [isSignedIn]);
 
-  // const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+  // Setare header
   const capitalizeWords = (str: string) =>
     str
       .split(" ")
@@ -67,219 +59,143 @@ export default function Index() {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: capitalizeWords(list),
+      title: list ? capitalizeWords(list) : "Todos",
       headerRight: () => <NotificatinoButton />,
-      headerStyle: {
-        backgroundColor: bgColor,
-      },
-      contentStyle: {
-        backgroundColor: bgColor,
-      },
+      headerStyle: { backgroundColor: bgColor },
+      contentStyle: { backgroundColor: bgColor },
     });
-  }, [navigation, bgColor]);
+  }, [navigation, bgColor, list]);
 
+  // Fetch todos la mount sau când list se schimbă
+  useEffect(() => {
+    if (!list) return;
+    let isMounted = true;
+
+    const loadTodos = async () => {
+      setIsLoading(true);
+      const fetched = await fetchTodos(list);
+      if (isMounted && fetched) setIsLoading(false);
+    };
+    loadTodos();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [list]);
+
+  // Submit todo
   const submitHandler = async () => {
-    if (todo.trim() === "") {
+    const trimmed = inputValue.trim();
+    if (!trimmed) {
       Alert.alert("Error", "Name cannot be empty!");
       return;
     }
-
-    for (const item of todos) {
-      if (item.text === todo.trim()) {
-        Alert.alert("Error", "Name already exists!");
-        return;
-      }
+    if (todos.some((t) => t.text === trimmed)) {
+      Alert.alert("Error", "Name already exists!");
+      return;
     }
 
-    console.log("todo:", todo);
-    await addTodo(todo, list);
-    setTodo("");
-    await fetchTodos(list);
+    setIsLoading(true);
+    await addTodo(trimmed, list); // backend adaugă
+    // await fetchTodos(list); // fetch complet după adăugare
+    setInputValue("");
+    setIsLoading(false);
   };
 
-  const onInputChange = (text: string) => {
-    setTodo(text);
-  };
-
+  // Delete all todos
   const deleteTodosHandler = () => {
     Alert.alert("Delete All", "Are you sure you want to delete all todos?", [
-      {
-        text: "Cancel",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel",
-      },
+      { text: "Cancel", style: "cancel" },
       {
         text: "OK",
-        onPress: () => deleteTodos(list),
+        onPress: async () => {
+          setIsLoading(true);
+          await deleteTodos(list);
+          await fetchTodos(list); // fetch complet după delete
+          setIsLoading(false);
+        },
       },
     ]);
   };
 
-  useEffect(() => {
-    fetchTodos(list);
-  }, []);
-
-  useEffect(() => {
-    setIsLoading(true);
-    const updateRninderFalseForMissedNotifications = async () => {
-      const now = new Date();
-      const missed = todos.filter(
-        (n) => n.reminder && n.reminderDate && new Date(n.reminderDate) < now
-      );
-      console.log("👍 am gasit ", missed.length, " todos trecute");
-
-      for (const n of missed) {
-        try {
-          await updateTodo({
-            id: n.id,
-            listName: n.listName,
-            text: n.text,
-            reminder: false,
-            reminderDate: null,
-          });
-        } catch (error) {
-          console.log("UpdateTodo in list error:", error);
-        }
-      }
-
-      setIsLoading(false);
-    };
-    updateRninderFalseForMissedNotifications();
-  }, [todos]);
-
   if (isLoading) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" color={"#333"} />
+      <View style={{ paddingTop: 70 }}>
+        <ActivityIndicator size="large" color="#3c81c7" />
       </View>
     );
   }
 
-  if (!isLoaded || !isSignedIn) {
-    return null; // sau un ActivityIndicator
-  }
+  if (!isLoaded || !isSignedIn) return null;
 
   return (
-    <>
-      {/* <SafeAreaView style={{ flex: 1 }}> */}
-      <View style={styles.rootContainer}>
-        <UserContainer />
-        <Text
-          style={{
-            fontWeight: "bold",
-            alignSelf: "flex-start",
-            color: "#555",
-          }}
-        >
-          Add new Item
-        </Text>
-        <View style={styles.inputContainer}>
-          <TextInput
-            value={todo}
-            onChangeText={onInputChange}
-            style={styles.input}
-            placeholder="add item"
-            returnKeyType="done"
-            onSubmitEditing={submitHandler}
-            // multiline={true}
-          />
-          <TouchableOpacity style={styles.button} onPress={submitHandler}>
-            <Text style={styles.buttonText}>add</Text>
-          </TouchableOpacity>
-        </View>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 40 }}
-          style={{
-            width: "100%",
-            marginTop: 10,
-            // padding: 10,
-            marginBottom: 50,
-            // backgroundColor: "#faaaaa",
-          }}
-        >
-          {todos.map((todo) => (
-            <TodoComponent key={todo.id} item={todo} listName={list} />
-          ))}
-        </ScrollView>
+    <View style={styles.container}>
+      <UserContainer />
+      <Text style={styles.addLabel}>Add New Item</Text>
+      <View style={styles.inputContainer}>
+        <TextInput
+          value={inputValue}
+          onChangeText={setInputValue}
+          placeholder="New item"
+          style={styles.input}
+          returnKeyType="done"
+          onSubmitEditing={submitHandler}
+        />
+        <TouchableOpacity style={styles.button} onPress={submitHandler}>
+          <Text adjustsFontSizeToFit style={styles.buttonText}>
+            Add
+          </Text>
+        </TouchableOpacity>
       </View>
-      {/* </SafeAreaView> */}
-    </>
+
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 40 }}
+        style={{ width: "100%", marginTop: 10, marginBottom: 50 }}
+      >
+        {todos.map((t) => (
+          <TodoComponent key={t._id} item={t} listName={list} />
+        ))}
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  rootContainer: {
+  container: {
     flex: 1,
+    paddingHorizontal: 24,
     alignItems: "center",
     paddingTop: 8,
-    // backgroundColor: "#ffffff",
-    paddingHorizontal: 16,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 16,
-    color: "#555",
-  },
+  addLabel: { fontWeight: "bold", alignSelf: "flex-start", color: "#555" },
   inputContainer: {
     width: "100%",
-    height: 50,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    marginBottom: 12,
   },
   input: {
-    // width: "100%",
     flex: 1,
-    height: 40,
     borderWidth: 1,
     borderColor: "#aaaaaa",
     padding: 8,
+    backgroundColor: "#ffffff90",
+    borderRadius: 4,
   },
   button: {
-    // width: "25%",
     alignItems: "center",
     justifyContent: "center",
     height: 40,
     paddingHorizontal: 12,
     marginLeft: 8,
     borderRadius: 4,
-    elevation: 3,
     backgroundColor: "#314797",
-  },
-  list: {
-    width: "100%",
-    backgroundColor: "#b3a5a5",
-  },
-  deleteButton: {
-    alignItems: "center",
-    justifyContent: "center",
-    height: 40,
-    paddingHorizontal: 12,
-    marginTop: 8,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: "red",
-    alignSelf: "flex-end",
-    marginBottom: 20,
   },
   buttonText: {
     fontSize: 16,
     fontWeight: "bold",
     color: "white",
     textTransform: "uppercase",
-    // fontFamily: "Inter_500Medium",
-  },
-  checkBox: {
-    marginLeft: 10,
-    width: 25,
-    height: 25,
-    borderWidth: 2,
-    borderColor: "#3a8e3d",
-    borderRadius: 5,
-  },
-  checked: {
-    backgroundColor: "#3a8e3d",
   },
 });

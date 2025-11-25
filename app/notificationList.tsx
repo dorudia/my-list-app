@@ -1,4 +1,3 @@
-import { useNotifications } from "@/store/notification-context";
 import { useTodos } from "@/store/todo-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "expo-router";
@@ -10,56 +9,62 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useUser } from "@clerk/clerk-expo";
+import { useNotifications } from "@/store/notification-context";
 
 const NotificationList = () => {
   const { bgColor } = useTodos();
-  const [color, setColor] = useState("#fff");
   const navigation = useNavigation();
+  const { user, isLoaded } = useUser();
+
   const {
     notifications,
-    removeNotification,
-    clearNotifications,
+    deleteNotification,
+    deleteAllNotifications,
     markAllAsRead,
   } = useNotifications();
-  const delivered = notifications.filter((n) => n.delivered);
 
-  useEffect(() => {
-    setColor(bgColor);
-    console.log(color);
-  }, [bgColor]);
+  // Filtrăm doar notificările livrate
+  const deliveredNotifications = notifications.filter((n) => n.delivered);
 
+  // Setăm stilul headerului
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerStyle: {
-        backgroundColor: bgColor,
-      },
-      contentStyle: {
-        backgroundColor: bgColor,
-      },
+      headerStyle: { backgroundColor: bgColor },
+      contentStyle: { backgroundColor: bgColor },
     });
-  });
+  }, [navigation, bgColor]);
+
+  // Marchează toate ca citite după ce se încarcă notificările livrate
+  useEffect(() => {
+    if (isLoaded && user && deliveredNotifications.length > 0) {
+      const timer = setTimeout(() => {
+        markAllAsRead(user.id);
+      }, 2300);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoaded, user, deliveredNotifications]);
 
   useEffect(() => {
-    if (notifications.length === 0) return;
+    if (!isLoaded || !user) return;
 
-    const timer = setTimeout(() => {
-      markAllAsRead(); // funcția din context
-    }, 2300);
-
-    return () => clearTimeout(timer); // curățare la demontare
-  }, []);
-
-  useEffect(() => {
     return () => {
-      markAllAsRead();
+      markAllAsRead(user.id); // aici e SIGUR executat
     };
-  }, []);
+  }, [isLoaded, user]);
+
+  if (!isLoaded || !user) return null;
 
   return (
-    <ScrollView scrollEnabled={true} contentContainerStyle={styles.container}>
+    <ScrollView scrollEnabled contentContainerStyle={styles.container}>
       <Text style={styles.title}>Ultimele notificări:</Text>
-      {notifications.map((n) => (
-        <View key={n.id} style={styles.notification}>
+
+      {deliveredNotifications.length === 0 && (
+        <Text style={styles.notificationText}>Nu ai notificări</Text>
+      )}
+
+      {deliveredNotifications.map((n) => (
+        <View key={n._id} style={styles.notification}>
           <Ionicons name="notifications-outline" size={16} color="#1e33d0" />
           <Text
             numberOfLines={1}
@@ -68,22 +73,19 @@ const NotificationList = () => {
               { color: n.read ? "#747474" : "#314797" },
             ]}
           >
-            {n?.title} — {new Date(n?.date!).toLocaleTimeString()}
+            {n?.title} — {n.date ? new Date(n.date).toLocaleTimeString() : ""}
           </Text>
-          {/* <Button title="X" onPress={() => removeNotification(n.id)} /> */}
-          <TouchableOpacity onPress={() => removeNotification(n.id)}>
+          <TouchableOpacity onPress={() => deleteNotification(user.id, n._id)}>
             <Ionicons name="close" size={28} color="#e13131" />
           </TouchableOpacity>
         </View>
       ))}
-      {notifications.length === 0 && (
-        <Text style={styles.notificationText}>Nu ai notificări</Text>
-      )}
-      {notifications.length > 0 && (
+
+      {deliveredNotifications.length > 0 && (
         <View>
           <TouchableOpacity
-            style={styles.delteAll}
-            onPress={clearNotifications}
+            style={styles.deleteAll}
+            onPress={() => deleteAllNotifications(user.id)}
           >
             <Text style={styles.deleteAllText}>Șterge toate</Text>
           </TouchableOpacity>
@@ -93,49 +95,35 @@ const NotificationList = () => {
   );
 };
 
-export default NotificationList;
-
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    paddingHorizontal: 24,
-    alignItems: "center",
-    justifyContent: "flex-start",
-    paddingTop: 20,
-    paddingBottom: 60,
+    padding: 16,
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
-    marginBottom: 20,
-    textAlign: "center",
-    color: "#555",
+    marginBottom: 12,
   },
   notification: {
-    width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    // marginBottom: 10,
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+    paddingVertical: 8,
   },
   notificationText: {
+    marginLeft: 8,
     flex: 1,
-    color: "#555",
-    marginRight: 10,
-    marginLeft: 4,
   },
-  delteAll: {
-    backgroundColor: "#dd3535",
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 5,
+  deleteAll: {
     marginTop: 16,
+    backgroundColor: "#e13131",
+    padding: 10,
+    borderRadius: 6,
+    alignItems: "center",
   },
   deleteAllText: {
     color: "#fff",
     fontWeight: "bold",
   },
 });
+
+export default NotificationList;

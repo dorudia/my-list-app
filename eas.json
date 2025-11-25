@@ -22,7 +22,8 @@
         "NODE_ENV": "production",
         "FIREBASE_BASE": "https://react-native-expenses-co-44802-default-rtdb.europe-west1.firebasedatabase.app/liste",
         "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_c3Rhci1vd2wtODguY2xlcmsuYWNjb3VudHMuZGV2JA",
-        "API_BASE_URL": "https://my-list-app-server.onrender.com"
+        "API_BASE_URL": "https://my-list-app-server.onrender.com",
+        "REACT_APP_API_URL": "https://my-list-app-server.onrender.com"
       }
     }
   }
