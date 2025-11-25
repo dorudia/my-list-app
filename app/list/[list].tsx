@@ -50,6 +50,13 @@ export default function Index() {
     return () => backHandler.remove();
   }, [isSignedIn]);
 
+  useEffect(() => {
+    if (!isLoaded || !user || !list) return;
+
+    // apelează fetchTodos pentru lista selectată
+    fetchTodos(list);
+  }, [isLoaded, user, list]);
+
   // Setare header
   const capitalizeWords = (str: string) =>
     str
