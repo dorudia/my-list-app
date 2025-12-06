@@ -10,6 +10,7 @@ import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
   Alert,
+  Linking,
   Platform,
   StyleSheet,
   Text,
@@ -32,6 +33,8 @@ const Todo = () => {
   );
   const [inputValue, setInputValue] = useState(todo?.text || "");
   const [isChecked, setIsChecked] = useState(todo?.completed || false);
+  const [link, setLink] = useState(todo?.link || "");
+  const [phone, setPhone] = useState(todo?.phone || "");
   const router = useRouter();
   const { bgColor } = useTodos();
   const navigation = useNavigation();
@@ -126,14 +129,18 @@ const Todo = () => {
     if (date) {
       const reminder = date > new Date();
       const updatedDate = date > new Date() ? date : undefined;
-      updateTodo({
+      const todoUpdate = {
         _id: id,
         listName,
         text,
         completed: isChecked,
         reminder,
         reminderDate: updatedDate,
-      });
+        link: link.trim() || undefined,
+        phone: phone.trim() || undefined,
+      };
+      console.log("📤 Updating todo with:", todoUpdate);
+      updateTodo(todoUpdate);
       createNotification({
         listName,
         title: text,
@@ -144,7 +151,16 @@ const Todo = () => {
         delivered: false,
       });
     } else {
-      updateTodo({ _id: id, listName, text });
+      const todoUpdate = { 
+        _id: id, 
+        listName, 
+        text, 
+        completed: isChecked,
+        link: link.trim() || undefined,
+        phone: phone.trim() || undefined 
+      };
+      console.log("📤 Updating todo with:", todoUpdate);
+      updateTodo(todoUpdate);
     }
 
     router.back();
@@ -160,6 +176,25 @@ const Todo = () => {
           onChangeText={setInputValue}
           style={styles.input}
           placeholder="Edit List Item"
+        />
+
+        <Text style={{ textAlign: "center", marginBottom: 8 }}>Add Link</Text>
+        <TextInput
+          value={link}
+          onChangeText={setLink}
+          style={styles.input}
+          placeholder="https://example.com"
+          autoCapitalize="none"
+          keyboardType="url"
+        />
+
+        <Text style={{ textAlign: "center", marginBottom: 8 }}>Add Phone</Text>
+        <TextInput
+          value={phone}
+          onChangeText={setPhone}
+          style={styles.input}
+          placeholder="+40 123 456 789"
+          keyboardType="phone-pad"
         />
 
         <View style={{ width: "100%" }}>
@@ -210,6 +245,34 @@ const Todo = () => {
                 marginTop: 16,
               }}
             />
+          )}
+
+          {todo?.link && (
+            <TouchableOpacity
+              style={[
+                styles.button,
+                { backgroundColor: "#0066cc", marginTop: 16 },
+              ]}
+              onPress={() => Linking.openURL(todo.link!)}
+            >
+              <Text adjustsFontSizeToFit style={styles.buttonText}>
+                Go to Link
+              </Text>
+            </TouchableOpacity>
+          )}
+
+          {todo?.phone && (
+            <TouchableOpacity
+              style={[
+                styles.button,
+                { backgroundColor: "#28a745", marginTop: 16 },
+              ]}
+              onPress={() => Linking.openURL(`tel:${todo.phone}`)}
+            >
+              <Text adjustsFontSizeToFit style={styles.buttonText}>
+                Call
+              </Text>
+            </TouchableOpacity>
           )}
 
           <TouchableOpacity

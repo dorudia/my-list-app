@@ -215,6 +215,24 @@ const TodoComponent: React.FC<TodoComponentProps> = ({ item, listName }) => {
           color="#cf1010"
         />
       )}
+
+      {item.link && (
+        <Ionicons
+          name="link-outline"
+          style={styles.linkIcon}
+          size={16}
+          color="#0066cc"
+        />
+      )}
+
+      {item.phone && (
+        <Ionicons
+          name="call-outline"
+          style={styles.phoneIcon}
+          size={16}
+          color="#28a745"
+        />
+      )}
     </Pressable>
   );
 };
@@ -259,6 +277,16 @@ const styles = StyleSheet.create({
   notificationIcon: {
     position: "absolute",
     left: 0,
+    top: 0,
+  },
+  linkIcon: {
+    position: "absolute",
+    left: 20,
+    top: 0,
+  },
+  phoneIcon: {
+    position: "absolute",
+    left: 40,
     top: 0,
   },
 });

@@ -50,12 +50,12 @@ export default function Index() {
     return () => backHandler.remove();
   }, [isSignedIn]);
 
-  useEffect(() => {
-    if (!isLoaded || !user || !list) return;
+  // useEffect(() => {
+  //   if (!isLoaded || !user || !list) return;
 
-    // apelează fetchTodos pentru lista selectată
-    fetchTodos(list);
-  }, [isLoaded, user, list]);
+  //   // apelează fetchTodos pentru lista selectată
+  //   fetchTodos(list);
+  // }, [isLoaded, user, list]);
 
   // Setare header
   const capitalizeWords = (str: string) =>
@@ -80,8 +80,8 @@ export default function Index() {
 
     const loadTodos = async () => {
       setIsLoading(true);
-      const fetched = await fetchTodos(list);
-      if (isMounted && fetched) setIsLoading(false);
+      await fetchTodos(list);
+      if (isMounted) setIsLoading(false); // FĂRĂ `fetched`
     };
     loadTodos();
 

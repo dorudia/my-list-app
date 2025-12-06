@@ -6,4 +6,6 @@ export interface Todo {
   completed?: boolean;
   reminder?: boolean;
   reminderDate?: Date | null;
+  link?: string;
+  phone?: string;
 }

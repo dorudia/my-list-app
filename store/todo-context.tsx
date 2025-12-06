@@ -9,7 +9,8 @@ import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 //   Constants.expoConfig?.extra?.EXPO_PUBLIC_API_URL ||
 //   "http://192.168.0.235:3000"; // fallback
 
-const API_URL = "https://my-list-app-server.onrender.com";
+// const API_URL = "https://my-list-app-server.onrender.com"; // production
+const API_URL = "http://10.0.2.2:3000"; // Android emulator localhost
 
 export type Todo = {
   _id: string;
@@ -19,6 +20,8 @@ export type Todo = {
   completed?: boolean;
   reminder?: boolean;
   reminderDate?: Date | null;
+  link?: string;
+  phone?: string;
 };
 
 export type UserList = {
@@ -109,7 +112,7 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
       Alert.alert("Error", "List name cannot be empty!");
       return;
     }
-    if (userLists.some((l) => l.name === trimmed)) {
+    if (userLists.some((l) => l.name.toLowerCase() === trimmed.toLowerCase())) {
       Alert.alert("Error", "List name already exists!");
       return;
     }
@@ -193,6 +196,7 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
   ) => {
     if (!user) return;
     const token = await getToken();
+    console.log("🔄 todo-context updateTodo called with:", todo);
     try {
       const res = await fetch(
         `${API_URL}/todos/${user.id}/${todo.listName}/${todo._id}`,
@@ -206,6 +210,7 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
         }
       );
       const updated: Todo = await res.json();
+      console.log("✅ Backend returned:", updated);
       // actualizare UI instant
       setTodos((prev) =>
         prev.map((t) => (t._id === updated._id ? updated : t))
