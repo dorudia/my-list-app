@@ -54,7 +54,22 @@
           "color": "#ffffff"
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      [
+        "react-native-android-widget",
+        {
+          "widgets": [
+            {
+              "name": "ClockWidget",
+              "label": "Ceas & Vremea",
+              "minWidth": "320dp",
+              "minHeight": "180dp",
+              "description": "Afișează ora, data și temperatura",
+              "previewImage": "./assets/images/partial-react-logo.png"
+            }
+          ]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
@@ -66,7 +81,7 @@
       "eas": {
         "projectId": "bbf2edec-d220-4e46-8a0e-e850430f6928"
       },
-      "EXPO_PUBLIC_API_URL": "http://192.168.0.216:3000"
+      "EXPO_PUBLIC_API_URL": "https://my-list-app-server.onrender.com"
     },
     "owner": "ddia"
   }

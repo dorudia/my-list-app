@@ -207,32 +207,34 @@ const TodoComponent: React.FC<TodoComponentProps> = ({ item, listName }) => {
         />
       </View>
 
-      {item.reminder && (
-        <Ionicons
-          name="notifications-outline"
-          style={styles.notificationIcon}
-          size={16}
-          color="#cf1010"
-        />
-      )}
+      <View style={styles.icons}>
+        {item.reminder && (
+          <Ionicons
+            name="notifications-outline"
+            // style={styles.notificationIcon}
+            size={16}
+            color="#cf1010"
+          />
+        )}
 
-      {item.link && (
-        <Ionicons
-          name="link-outline"
-          style={styles.linkIcon}
-          size={16}
-          color="#0066cc"
-        />
-      )}
+        {item.link && (
+          <Ionicons
+            name="link-outline"
+            // style={styles.linkIcon}
+            size={16}
+            color="#0066cc"
+          />
+        )}
 
-      {item.phone && (
-        <Ionicons
-          name="call-outline"
-          style={styles.phoneIcon}
-          size={16}
-          color="#28a745"
-        />
-      )}
+        {item.phone && (
+          <Ionicons
+            name="call-outline"
+            // style={styles.phoneIcon}
+            size={16}
+            color="#28a745"
+          />
+        )}
+      </View>
     </Pressable>
   );
 };
@@ -251,6 +253,7 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 8,
     marginBottom: 4,
+    position: "relative",
   },
   text: {
     fontSize: 18,
@@ -274,21 +277,36 @@ const styles = StyleSheet.create({
   checked: {
     backgroundColor: "#6783e9",
   },
-  notificationIcon: {
+  icons: {
     position: "absolute",
+    zIndex: 6,
+    top: -6,
     left: 0,
-    top: 0,
+    padding: 4,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
   },
-  linkIcon: {
-    position: "absolute",
-    left: 20,
-    top: 0,
-  },
-  phoneIcon: {
-    position: "absolute",
-    left: 40,
-    top: 0,
-  },
+  // notificationIcon: {
+  //   position: "absolute",
+  //   left: 0,
+  //   top: -4,
+  // },
+  // notificationIcon: {
+  //   position: "absolute",
+  //   left: 0,
+  //   top: 0,
+  // },
+  // linkIcon: {
+  //   position: "absolute",
+  //   left: 20,
+  //   top: 0,
+  // },
+  // phoneIcon: {
+  //   position: "absolute",
+  //   left: 40,
+  //   top: 0,
+  // },
 });
 
 // import React, { useState, useEffect } from "react";

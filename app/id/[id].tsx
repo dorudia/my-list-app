@@ -12,6 +12,7 @@ import {
   Alert,
   Linking,
   Platform,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -151,13 +152,13 @@ const Todo = () => {
         delivered: false,
       });
     } else {
-      const todoUpdate = { 
-        _id: id, 
-        listName, 
-        text, 
+      const todoUpdate = {
+        _id: id,
+        listName,
+        text,
         completed: isChecked,
         link: link.trim() || undefined,
-        phone: phone.trim() || undefined 
+        phone: phone.trim() || undefined,
       };
       console.log("📤 Updating todo with:", todoUpdate);
       updateTodo(todoUpdate);
@@ -167,7 +168,11 @@ const Todo = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{ alignItems: "center", paddingBottom: 40 }}
+      showsVerticalScrollIndicator={false}
+    >
       {/* <Text style={styles.title}>Edit Todo</Text> */}
       <View style={{ alignItems: "center", width: "100%" }}>
         <Text style={{ textAlign: "center", marginBottom: 8 }}>Edit text</Text>
@@ -176,6 +181,7 @@ const Todo = () => {
           onChangeText={setInputValue}
           style={styles.input}
           placeholder="Edit List Item"
+          placeholderTextColor="#999"
         />
 
         <Text style={{ textAlign: "center", marginBottom: 8 }}>Add Link</Text>
@@ -184,6 +190,7 @@ const Todo = () => {
           onChangeText={setLink}
           style={styles.input}
           placeholder="https://example.com"
+          placeholderTextColor="#999"
           autoCapitalize="none"
           keyboardType="url"
         />
@@ -194,6 +201,7 @@ const Todo = () => {
           onChangeText={setPhone}
           style={styles.input}
           placeholder="+40 123 456 789"
+          placeholderTextColor="#999"
           keyboardType="phone-pad"
         />
 
@@ -202,7 +210,10 @@ const Todo = () => {
           <Text style={{ textAlign: "center", marginBottom: 8 }}>
             Edit Reminder
           </Text>
-          <TouchableOpacity onPress={showPicker} style={styles.dateContainer}>
+          <TouchableOpacity
+            onPress={showPicker}
+            style={[styles.dateContainer, { marginBottom: 16 }]}
+          >
             <View
               style={{
                 flexDirection: "row",
@@ -220,7 +231,10 @@ const Todo = () => {
               <Text style={styles.buttonText}>{"Set Reminder Date "}</Text>
             </View>
             {date && (
-              <Text adjustsFontSizeToFit style={styles.date}>
+              <Text
+                adjustsFontSizeToFit
+                style={[styles.date, { marginBottom: 16 }]}
+              >
                 {new Intl.DateTimeFormat("ro-RO", {
                   year: "numeric",
                   month: "2-digit",
@@ -247,36 +261,50 @@ const Todo = () => {
             />
           )}
 
-          {todo?.link && (
-            <TouchableOpacity
-              style={[
-                styles.button,
-                { backgroundColor: "#0066cc", marginTop: 16 },
-              ]}
-              onPress={() => Linking.openURL(todo.link!)}
-            >
-              <Text adjustsFontSizeToFit style={styles.buttonText}>
-                Go to Link
-              </Text>
-            </TouchableOpacity>
-          )}
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            {todo?.link && (
+              <TouchableOpacity
+                style={[
+                  styles.button,
+                  { backgroundColor: "#0066cc", width: "45%" },
+                ]}
+                onPress={() => {
+                  let url = todo.link!;
+                  // Adaugă https:// dacă lipsește
+                  if (
+                    !url.startsWith("http://") &&
+                    !url.startsWith("https://")
+                  ) {
+                    url = "https://" + url;
+                  }
+                  Linking.openURL(url);
+                }}
+              >
+                <Text adjustsFontSizeToFit style={styles.buttonText}>
+                  Go to Link
+                </Text>
+              </TouchableOpacity>
+            )}
 
-          {todo?.phone && (
-            <TouchableOpacity
-              style={[
-                styles.button,
-                { backgroundColor: "#28a745", marginTop: 16 },
-              ]}
-              onPress={() => Linking.openURL(`tel:${todo.phone}`)}
-            >
-              <Text adjustsFontSizeToFit style={styles.buttonText}>
-                Call
-              </Text>
-            </TouchableOpacity>
-          )}
+            {todo?.phone && (
+              <TouchableOpacity
+                style={[
+                  styles.button,
+                  { backgroundColor: "#28a745", width: "45%" },
+                ]}
+                onPress={() => Linking.openURL(`tel:${todo.phone}`)}
+              >
+                <Text adjustsFontSizeToFit style={styles.buttonText}>
+                  Call
+                </Text>
+              </TouchableOpacity>
+            )}
+          </View>
 
           <TouchableOpacity
-            style={styles.button}
+            style={[styles.button, { marginTop: 16 }]}
             onPress={() => submitHandler(inputValue)}
           >
             <Text adjustsFontSizeToFit style={styles.buttonText}>
@@ -297,7 +325,7 @@ const Todo = () => {
           )}
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -308,7 +336,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     paddingHorizontal: 24,
-    alignItems: "center",
     paddingTop: 8,
   },
   title: {
@@ -318,26 +345,27 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   input: {
-    // height: 40,
+    height: 36,
     width: "100%",
-    fontSize: 20,
+    fontSize: 14,
     borderWidth: 2,
     borderColor: "#bbbbbb",
-    padding: 10,
+    paddingVertical: 6,
+    paddingHorizontal: 8,
     backgroundColor: "#ffffff80",
-    marginBottom: 16,
+    marginBottom: 12,
     borderRadius: 8,
   },
   button: {
     alignItems: "center",
     backgroundColor: "#136f0e",
-    marginTop: 24,
+    marginTop: 0,
     padding: 12,
     justifyContent: "center",
     paddingHorizontal: 16,
     borderRadius: 16,
     width: "100%",
-    marginBottom: 40,
+    marginBottom: 16,
   },
   buttonText: {
     color: "#ffffff",

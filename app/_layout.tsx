@@ -9,6 +9,9 @@ import { Platform, StatusBar, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 
+// Înregistrează widget-ul
+import "../widgets";
+
 const clerkKey = Constants.expoConfig?.extra?.clerkPublishableKey;
 
 export default function RootLayout() {

@@ -1,16 +1,17 @@
 import { useUser, useAuth } from "@clerk/clerk-expo";
 import { createContext, useContext, useEffect, useState } from "react";
-import { Alert } from "react-native";
+import { Alert, Platform } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { NotificationProvider } from "@/store/notification-context";
 import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
+import Constants from "expo-constants";
 
-// const API_URL =
-//   Constants.expoConfig?.extra?.EXPO_PUBLIC_API_URL ||
-//   "http://192.168.0.235:3000"; // fallback
+// Detectează automat mediul
+const API_URL = __DEV__
+  ? "http://192.168.0.216:3000" // Development local server
+  : "https://my-list-app-server.onrender.com"; // Production
 
-// const API_URL = "https://my-list-app-server.onrender.com"; // production
-const API_URL = "http://10.0.2.2:3000"; // Android emulator localhost
+console.log("🌐 API_URL:", API_URL, "| DEV mode:", __DEV__);
 
 export type Todo = {
   _id: string;
@@ -84,10 +85,13 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
   const getUserLists = async () => {
     if (!isLoaded || !user) return;
     const token = await getToken();
-    // console.log({ token });
 
-    // console.log("UserId form getLists:", user.id, "api-url:", API_URL);
-    // console.log(`${API_URL}/lists/${user.id}`);
+    console.log(
+      "📋 Fetching lists for user:",
+      user.id,
+      "from:",
+      `${API_URL}/lists/${user.id}`
+    );
 
     try {
       const res = await fetch(`${API_URL}/lists/${user.id}`, {
@@ -98,9 +102,10 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
         },
       });
       const data: UserList[] = await res.json();
+      console.log("📋 Lists received:", data?.length || 0, "lists");
       setUserLists(data || []);
     } catch (err) {
-      console.log("Error fetching lists:", err);
+      console.log("❌ Error fetching lists:", err);
     }
   };
 
@@ -197,6 +202,16 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
     if (!user) return;
     const token = await getToken();
     console.log("🔄 todo-context updateTodo called with:", todo);
+
+    // Convertește undefined în null pentru a trimite prin JSON
+    const todoToSend: any = {};
+    Object.keys(todo).forEach((key) => {
+      const value = (todo as any)[key];
+      todoToSend[key] = value === undefined ? null : value;
+    });
+
+    console.log("📤 Sending to backend:", todoToSend);
+
     try {
       const res = await fetch(
         `${API_URL}/todos/${user.id}/${todo.listName}/${todo._id}`,
@@ -206,7 +221,7 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(todo),
+          body: JSON.stringify(todoToSend),
         }
       );
       const updated: Todo = await res.json();
