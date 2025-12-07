@@ -11,8 +11,10 @@ import * as Notifications from "expo-notifications";
 import { Alert, Platform } from "react-native";
 import { useAuth } from "@clerk/clerk-react";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://192.168.0.216:3000";
-// const API_URL = "https://my-list-app-server.onrender.com";
+// Detectează automat mediul
+const API_URL = __DEV__
+  ? "http://192.168.0.216:3000" // Development local server
+  : "https://my-list-app-server.onrender.com"; // Production
 
 export type NotificationItem = {
   _id: string;
