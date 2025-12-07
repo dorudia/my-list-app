@@ -11,8 +11,8 @@ import * as Notifications from "expo-notifications";
 import { Alert, Platform } from "react-native";
 import { useAuth } from "@clerk/clerk-react";
 
-// const API_URL = process.env.REACT_APP_API_URL || "http://192.168.0.216:3000";
-const API_URL = "https://my-list-app-server.onrender.com";
+const API_URL = process.env.REACT_APP_API_URL || "http://192.168.0.216:3000";
+// const API_URL = "https://my-list-app-server.onrender.com";
 
 export type NotificationItem = {
   _id: string;
@@ -112,6 +112,22 @@ export const NotificationProvider = ({
     if (!isLoaded || !user) return;
     const id = userId || user.id;
     const clerkToken = await token();
+
+    // Obține email-ul utilizatorului din Clerk
+    const userEmail = user.primaryEmailAddress?.emailAddress;
+
+    console.log("👤 User email from Clerk:", userEmail);
+    console.log("👤 Full user object:", user);
+
+    const payload = {
+      ...data,
+      userId: id,
+      expoPushToken,
+      userEmail, // Adăugăm email-ul pentru reminder prin email
+    };
+
+    console.log("📤 Sending notification payload:", payload);
+
     try {
       await fetch(`${API_URL}/notifications/${id}`, {
         method: "POST",
@@ -119,7 +135,7 @@ export const NotificationProvider = ({
           "Content-Type": "application/json",
           Authorization: `Bearer ${clerkToken}`,
         },
-        body: JSON.stringify({ ...data, userId: id, expoPushToken }),
+        body: JSON.stringify(payload),
       });
       await fetchNotifications(id);
     } catch (err) {
