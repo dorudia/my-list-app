@@ -278,10 +278,6 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    getUserLists();
-  }, []);
-
-  useEffect(() => {
     if (isLoaded && user) {
       getUserLists();
     }
@@ -292,26 +288,38 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
       if (!isLoaded || !user) return;
 
       const now = new Date();
+      const token = await getToken();
 
       // iterăm prin toate listele utilizatorului
       for (const list of userLists) {
-        const todos = await fetchTodos(list.name);
-        if (!todos) continue;
+        // Fetch todos fără a seta state-ul global
+        try {
+          const res = await fetch(`${API_URL}/todos/${user.id}/${list.name}`, {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          const todos: Todo[] = await res.json();
+          if (!todos) continue;
 
-        for (const todo of todos) {
-          if (!todo.reminderDate) continue;
+          for (const todo of todos) {
+            if (!todo.reminderDate) continue;
 
-          const reminderTime = new Date(todo.reminderDate);
-          if (reminderTime <= now && todo.reminder) {
-            // dezactivează reminder-ul și resetează reminderDate
-            await updateTodo({
-              _id: todo._id,
-              listName: todo.listName,
-              reminder: false,
-              reminderDate: null,
-            });
-            console.log("✅ Reminder dezactivat pentru todo:", todo._id);
+            const reminderTime = new Date(todo.reminderDate);
+            if (reminderTime <= now && todo.reminder) {
+              // dezactivează reminder-ul și resetează reminderDate
+              await updateTodo({
+                _id: todo._id,
+                listName: todo.listName,
+                reminder: false,
+                reminderDate: null,
+              });
+              console.log("✅ Reminder dezactivat pentru todo:", todo._id);
+            }
           }
+        } catch (err) {
+          console.log("Error checking reminders for list:", list.name, err);
         }
       }
     };
