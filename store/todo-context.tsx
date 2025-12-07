@@ -8,7 +8,7 @@ import Constants from "expo-constants";
 
 // Detectează automat mediul
 const API_URL = __DEV__
-  ? "http://192.168.0.216:3000" // Development local server
+  ? "http://192.168.0.235:3000" // Development local server
   : "https://my-list-app-server.onrender.com"; // Production
 
 console.log("🌐 API_URL:", API_URL, "| DEV mode:", __DEV__);

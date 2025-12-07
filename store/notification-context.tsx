@@ -13,7 +13,7 @@ import { useAuth } from "@clerk/clerk-react";
 
 // Detectează automat mediul
 const API_URL = __DEV__
-  ? "http://192.168.0.216:3000" // Development local server
+  ? "http://192.168.0.235:3000" // Development local server
   : "https://my-list-app-server.onrender.com"; // Production
 
 export type NotificationItem = {
@@ -266,10 +266,8 @@ export const NotificationProvider = ({
           listName: string;
           title: string;
         };
-        // console.log("✅ data:", { data });
 
         const { todoId, listName, title } = data;
-        // console.log("Listener a primit data", { todoId, listName, title });
 
         if (!isLoaded || !user) {
           setPendingNotifications((prev: PendingNotification[]) => [
@@ -277,29 +275,22 @@ export const NotificationProvider = ({
             {
               todoId,
               listName,
-              updates: { title, reminder: false, reminderDate: null },
+              updates: { title },
             },
           ]);
           return;
         }
 
-        try {
-          // console.log("✅ Din listener:", todoId, listName);
+        // Dezactivăm reminder-ul când primești notificarea
+        await updateTodo({
+          _id: todoId,
+          listName,
+          reminder: false,
+          reminderDate: null,
+        });
 
-          await updateTodo({
-            _id: todoId, // ⚠ folosește _id conform BE
-            listName,
-            reminder: false,
-            reminderDate: null,
-          });
-
-          // ⚠ marchează notificarea ca delivered dacă vrei
-          await updateNotification(todoId, { delivered: true });
-
-          await fetchNotifications();
-        } catch (err) {
-          console.log("❌ Error processing notification:", err);
-        }
+        // Refresh notifications list
+        await fetchNotifications(user.id);
       });
 
     responseListener.current =
