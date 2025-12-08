@@ -8,7 +8,7 @@ import Constants from "expo-constants";
 
 // Detectează automat mediul
 const API_URL = __DEV__
-  ? "http://192.168.0.235:3000" // Development local server
+  ? "http://192.168.0.216:3000" // Development local server
   : "https://my-list-app-server.onrender.com"; // Production
 
 console.log("🌐 API_URL:", API_URL, "| DEV mode:", __DEV__);
@@ -287,11 +287,13 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
     const checkTodosReminders = async () => {
       if (!isLoaded || !user) return;
 
+      console.log("[DEBUG] userLists in checkTodosReminders:", userLists);
       const now = new Date();
       const token = await getToken();
 
       // iterăm prin toate listele utilizatorului
       for (const list of userLists) {
+        console.log(`[DEBUG] Checking list: ${list.name}`);
         // Fetch todos fără a seta state-ul global
         try {
           const res = await fetch(`${API_URL}/todos/${user.id}/${list.name}`, {
@@ -301,8 +303,10 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
             },
           });
           const todos: Todo[] = await res.json();
+          console.log(`[DEBUG] Todos fetched for list ${list.name}:`, todos);
           if (!todos) continue;
 
+          let reminderDisabled = false;
           for (const todo of todos) {
             if (!todo.reminderDate) continue;
 
@@ -315,8 +319,18 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
                 reminder: false,
                 reminderDate: null,
               });
-              console.log("✅ Reminder dezactivat pentru todo:", todo._id);
+              console.log(
+                `[DEBUG] Reminder dezactivat pentru todo: ${todo._id}`
+              );
+              reminderDisabled = true;
             }
+          }
+          // Dacă s-a dezactivat vreun reminder, refă fetch pentru lista curentă
+          if (reminderDisabled) {
+            console.log(
+              `[DEBUG] Refetching todos for list: ${list.name} to update UI`
+            );
+            await fetchTodos(list.name);
           }
         } catch (err) {
           console.log("Error checking reminders for list:", list.name, err);
